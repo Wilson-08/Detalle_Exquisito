@@ -1,0 +1,223 @@
+﻿body {
+    background-image:url(/Imagenes/wallper1.jpg);
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-size:auto;
+    margin: 0px;
+    padding: 0px;
+}
+
+.fila-4{
+    height:auto;
+    width:90%;
+    margin:auto;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:space-around;
+    align-content:flex-start;
+}
+
+.tarjetas-prod {
+    height: 35rem;
+    display: flex;
+    flex: 0 1 26rem;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    border: 4px solid rgba(218, 247, 166,0.5);
+    margin: auto 10px 10px auto;
+    background-color: rgba(255,201,56,0.7);
+    border-radius: 8px;
+}
+
+.imagenes_Lista {
+display: flex;
+flex-flow: row nowrap;  
+}
+
+.imagenes_Lista a {
+    height: 100%;
+    width: 50%;
+    opacity: 0;
+    position: absolute;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagenes_Lista a:hover {
+    background-color: burlywood;
+    opacity: 0.5;
+}
+
+.imagenes_Lista a:nth-child(1) {
+    background-image: url("/Imagenes/editar.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+}
+
+.imagenes_Lista a:nth-child(2) {
+    background-image: url("/Imagenes/delete.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+}
+
+.Div2 {
+    width: 100%;
+    height: 21%;
+    padding: 5px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+.Div2 p, .Div2 h4 {
+    margin: 0px;
+}
+.Div3{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:space-between;
+    height: 9%;
+}
+
+#mostrar_completa {
+    position: fixed;
+    display: none;
+    background-color: rgba(26,26,26,0.4);
+    width: 60%;
+    height: 70%;
+    top: 15%;
+    left: 24%;
+    z-index: 800;
+    overflow: hidden;
+}
+
+.equis {
+    position: absolute;
+    display: block;
+    width: 23px;
+    clip-path: circle(50% at center);
+    transition: width 1s;
+    top: 0px;
+    right: 0px;
+}
+
+.equis:hover {
+    width: 30px;
+    background-color: rgba(88,88,88,0.1);
+    border: 1px solid rgba(88,88,88,0,2);
+}
+
+#Pedido_agregar {
+    width: 100%;
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:flex-start;
+    align-items:flex-start;
+    margin-top:10px;
+    position:relative;
+}
+.DivCantidades, .DivDedicatorias {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-content: center;
+}
+.DivCantidades button{
+    display:flex;
+    min-width:2rem;
+    flex:1 1 4rem;
+    padding:0px;
+    margin:0px;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+}
+
+.textosCantidad {
+    display:flex;
+    font-size: 16px;
+    text-align: center;
+    flex: 1 1 15rem;
+    min-width: 5rem;
+    background-color: rgba(225,212,179,0.6);
+    border: none;
+    border-top: 2px solid #A6ACAF;
+    border-bottom: 2px solid #A6ACAF;
+}
+.textosDedicatorias {
+    display:flex;
+    height:100%;
+    font-size: 12px;
+    text-align: center;
+    flex: 1 1 15rem;
+    min-width: 5rem;
+    background-color: rgba(162, 217, 206,0.5);
+    border: none;
+    border-top: 2px solid #A6ACAF;
+    border-bottom: 2px solid #A6ACAF;
+    color: #000;
+}
+#Pedido_ordenes {
+    background-color: slategray;
+    display:flex;
+    width:30%;
+    flex-flow:column nowrap;
+    flex:0 1 30%;
+    border-radius:25px;
+    padding:0px 12px 10px 12px;
+    position:fixed;
+    right:2%;
+}
+
+#Lista_Orden tr td:nth-child(2), #Lista_Orden tr td:nth-child(3) {
+    padding-left:20px;
+}
+
+#TotalCosto {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: end;
+    align-items: center;
+}
+
+#formulario_Final {
+    position: fixed;
+    width: 75%;
+    height: 450px;
+    display: none;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    left: 10%;
+    top: 20%;
+    background-image: url(/Imagenes/wallper4.png);
+    background-size:80%;
+    background-repeat:repeat;
+}
+
+#mapa_textos {
+    display: flex;
+    flex-flow:column nowrap;
+    justify-content:flex-start;
+    align-items:stretch;
+    width: 30%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

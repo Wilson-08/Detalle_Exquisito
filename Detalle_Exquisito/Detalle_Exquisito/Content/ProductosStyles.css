@@ -1,0 +1,103 @@
+﻿body {
+    background-image: url("/Imagenes/Fondo_Producto.jpg")
+}
+
+h2{
+    color:rgba(222,2222,222,0.7);
+    text-align:center;
+}
+h4, p, span {
+    color: rgba(210, 210, 209,0.8);
+}
+h3, h4, h5{
+    text-align:center;
+}
+.Producto_Lista {
+    display: flex;
+    width: 100%;
+    position: relative;
+    height: auto;
+    flex-flow: row wrap;
+    padding: 0px 50px 50px 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.Productos {
+    display: flex;
+    flex-flow: column nowrap;
+    height: auto;
+    max-height: 500px;
+    max-width: 330px;
+    flex: 0 1 auto;
+    background-color: RGBA(255, 87, 51,0.5);
+    opacity:1;
+    margin-right: 25px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    border: 4px solid rgba(0,0,0,0.9);
+    border-radius: 5%;
+}
+
+.Productos .Prod_img {
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5% 5% 0% 0%;
+}
+
+.Prod_img a {
+    height: 100%;
+    width: 50%;
+    opacity: 0;
+    position: absolute;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Productos .Prod_img a:hover {
+    background-color: burlywood;
+    opacity: 0.5;
+}
+
+.Productos .Prod_img a:nth-child(1) {
+    background-image: url("/Imagenes/editar.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+}
+
+.Productos .Prod_img a:nth-child(2) {
+    background-image: url("/Imagenes/delete.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+}
+
+.Productos .Prod_img img{width:100%;height:100%; }
+
+.Productos .Prod_Contenido{
+    display:flex;
+    width:100%;
+    height:40%;
+    flex-flow:column;
+    justify-content:space-evenly;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+#mostrar_completa {
+    position: fixed;
+    display: none;
+    background-color: rgba(26,26,26,0.6);
+    width: 60%;
+    height: 70%;
+    top: 15%;
+    left: 24%;
+    z-index: 800;
+    overflow: hidden;
+}
+
