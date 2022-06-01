@@ -268,6 +268,60 @@ namespace Detalle_Exquisito.Controllers
             });
             ViewBag.nombreClientes = itemProducto;
         }
+        private void EnviarCorreo(string valor, float Costo_Total)
+        {
+            string saludo = "";
+            if (DateTime.Now.Hour>=6 && DateTime.Now.Hour<12)
+            {
+                saludo = "Buenos Dias";
+            }
+            if (DateTime.Now.Hour>=12 && DateTime.Now.Hour<=18)
+            {
+                saludo = "Buenas Tardes";
+            }
+            if (DateTime.Now.Hour >18 && DateTime.Now.Hour <23 || DateTime.Now.Hour >=0 && DateTime.Now.Hour <6)
+            {
+                saludo = "Buenas Noches";
+            }
+            string Mensaje =
+                "<body>" +
+                "<h3>"+saludo+" "+ Session["Nombre"] + " su pedido fue Confirmado!</h3>" +
+                "<h2 style='text-align:center;'>Lista del Pedido</h2>" +
+                "<table style='margin:auto; background-color: #000; border: 1px solid #000;padding: 0px; text-align: center; width: 650px;'>" +
+                "<tr style='border: 1px solid #000;padding: 0px;text-align: center; background-color: #E3CB1C;'>" +
+                    "<th style='border: 1px solid #000;padding: 0px;text-align: center;'>Producto</th>" +
+                    "<th style='border: 1px solid #000;padding: 0px;text-align: center;'>Cantidad</th>" +
+                    "<th style='border: 1px solid #000;padding: 0px;text-align: center;'>Total</th>" +
+                "</tr>" +
+                valor+
+                "<tr style='border: 1px solid #000;padding: 0px;text-align: center;'>" +
+                    "<td colspan='3' style='background-color: #AFAEAB; border: 1px solid #000; padding:0px 17px 0px 0px; text-align: right;'><span style='font-weight:bold;'>Costo Total: " + Costo_Total+"Bs</span></td>" +
+                "</tr>" +
+                "</table>" +
+                "<p>Muchas gracias por confiar en nosotros, esperamos que los productos sean de su mayor agrado.</p>" +
+                "<span>¡Saludos cordiales!</span><br>" +
+                "<a href='pranx.com/hacker/' target='1'>Presiona Aqui para compartir tus datos personales..</a>" +
+                "</body>";
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com",587);
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.Port = 25;
+            smtpClient.EnableSsl = true;    
+            smtpClient.UseDefaultCredentials = true;
+            smtpClient.Credentials = new NetworkCredential("labola.malo3@gmail.com", "080201080569250300");
+
+            BD_Detalle_ExquisitoEntities bd = new BD_Detalle_ExquisitoEntities();
+            var personaEmail= bd.Usuario.Where(m => m.ID_Persona == Detalle_Exquisito.Controllers.HomeController.UsuarioActual).ToList();
+
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("labola.malo3@gmail.com", "Pedidos Detalle Exquisito");
+            //mail.To.Add(new MailAddress(personaEmail[0].correo_Electronico));
+            mail.To.Add(new MailAddress("labola.malo3@gmail.com"));
+            mail.Subject = "Mensaje de gatos";
+            mail.IsBodyHtml = true;
+            mail.Body = Mensaje;
+
+            smtpClient.Send(mail);
+        }
         
         private string NombreProducto(string codigo)
         {
