@@ -26,9 +26,9 @@
                     <td style="text-align:center;"><img src="~/Imagenes/plus.png" style="cursor:pointer;" alt="Alternate Text" orderId="@item.Nropedido" /></td>
                     <td>@item.Nropedido</td>
                     @{
-                        string mes = "";
-                        Session["mes"] = "";
-                        switch (item.fecha_Pedido.ToString().Substring(3, 2))
+                        string mes = item.fecha_Pedido.Month.ToString();
+
+                        switch (mes)
                         {
                             case "1":
                                 mes = "enero";
@@ -66,21 +66,26 @@
                             case "12":
                                 mes = "Diciembre";
                                 break;
+                            default:
+                                mes = "ninguno";
+                                break;
                         }
-                        string hora = @item.fecha_Pedido.ToString().Substring(11, 5);
-                        //hora =Convert.ToInt32(hora.Substring(0, 2)) > 12 ? (hora + "pm") : (hora + "am");
-                        <td>@item.fecha_Pedido.ToString().Substring(0, 2) @mes del @item.fecha_Pedido.ToString().Substring(6, 4) a las @hora</td>
+                        <td>
+                            @item.fecha_Pedido.Day.ToString() de 
+                            @mes del @item.fecha_Pedido.Year.ToString() a las 
+                            <strong>@item.fecha_Pedido.Hour.ToString():@item.fecha_Pedido.Minute</strong> 
+                        </td>
                     }
 
                     <td><a href="#" class="btn btn-info" onclick='iniciarMapa("@item.Ubicacion_Latitud","@item.Ubicacion_Longitud")'>Ver Ubicación</a></td>
 
                     @foreach (var item2 in ViewBag.PersonaLista)
-                    {
-                        if (item.ID_cliente == item2.Id_Per)
-                        {
+                                {
+                                    if (item.ID_cliente == item2.Id_Per)
+                                    {
                             <td>@item2.nombre_Persona @item2.apellido_Paterno @item2.apellido_Materno</td>
-                        }
-                    }
+                                    }
+                                }
                     <td>@item.costoEnvio Bs</td>
                     <td>@item.Costo_Total Bs</td>
                 </tr>
@@ -95,7 +100,7 @@
         </table>
     }
     else
-    {
+                        {
         <div style="border:5px dashed #000; margin:20px;">
             <h1 class="text-center">No Tiene Registros de Pedidos, Realice uno.</h1>
         </div>
@@ -124,8 +129,8 @@
 
 <style>
     .gm-svpc {
-        display: none;
-    }
+                        display: none;
+                        }
 </style>
 
 @section scripts{
