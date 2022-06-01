@@ -1,0 +1,89 @@
+﻿@model List<Detalle_Exquisito.Models.Personas_Modelos.Tabla_Personas>
+@{
+    ViewBag.Title = "Personas registradas";
+    int subir = 0;
+}
+
+<div class="separar">
+    <h2>@ViewBag.Title</h2>
+    <span><input type="text" name="name" value="" placeholder="Buscar Persona" /> @Html.ActionLink(" ", "Personas_Lista", "Personas",new { @id="buscarPersona",@class="glyphicon glyphicon-search" })</span>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Carnet de Identidad</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Numero de Telefono</th>
+                <th>Tipo</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CI_Persona</td>
+                    <td>@item.nombre_Persona </td>
+                    <td>@item.apellido_Paterno</td>
+                    @if (item.apellido_Materno != null)
+                    {
+                        <td>@item.apellido_Materno</td>
+                    }
+                    else
+                    {
+                        <td class="naranja" style="font-size:13px;">"Valor nulo"</td>
+                    }
+                    <td>@item.nro_telefono</td>
+                    @if (@item.tipo == "C".ToString())
+                    {
+                        <td>Cliente</td>
+                    }
+                    else
+                    {
+                        <td>Empleado</td>
+                    }
+
+                    <td>
+                        <a href="/Personas/Editar_Person/@item.Id_Per" class="btn btn-danger">Editar</a>
+                        <a href="/Personas/Eliminar_Persona/@item.Id_Per" class="btn btn-default">Eliminar</a>
+                        @if (ViewBag.registrado[subir] == true)
+                        {
+                            <p class="rojo" style="color: #ff0000; display:inline-block;">(Usuario Registrado)</p>
+                            subir++;
+                        }
+                        else
+                        {
+                            <a href="/Usuarios/Agregar_user_Person?id=@item.Id_Per" class="btn btn-info">Crear Usuario</a>
+                            subir++;
+                        }
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<div class="row" style="text-align:center; padding:5px;">
+    <a href="/Personas/AgregarPersonas" class="btn btn-primary">Registrar Persona</a>
+</div>
+
+
+<script>
+    const enlaces = document.getElementById("buscarPersona");
+    const inputs = document.querySelectorAll("input");
+
+    enlaces.addEventListener('click', function () {
+        enlaces.setAttribute("href", "/Personas/Personas_Lista?consulta=" + inputs[0].value + "");
+    });
+
+    inputs[0].addEventListener("keyup", function () {
+        if (event.code == "Enter") {
+            enlaces.click();
+        }
+    });
+</script>
+

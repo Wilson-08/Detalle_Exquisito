@@ -1,0 +1,153 @@
+﻿@model Detalle_Exquisito.Models.RegistroUsuario_Modelos.RegistroFusionModel
+@{
+    Layout = "~/Views/Shared/_LayoutRegister.cshtml";
+}
+
+<style>
+    * {
+        box-sizing: content-box;
+    }
+
+    body {
+        background-image: url("/Imagenes/Fondo_Registro_cliente2.jpg");
+        background-attachment: fixed;
+        background-position: left;
+        background-size: 100%;
+    }
+
+    .gatos {
+        height: 50px;
+        width: 50px;
+        color: rgba(175, 175, 175,0.9);
+    }
+
+        .gatos:hover {
+            color: rgb(255, 255, 255,0.8);
+        }
+</style>
+
+
+@using (Html.BeginForm("register_new_User", "RegistroVisitas", FormMethod.Post))
+{
+    <div class="row" id="Ventana_Registro">
+        <h3 id="h3_titulos" style="font-family:'Times New Roman', Times, serif; font-weight:600; font-size:22px; opacity:0.9;">INGRESE SUS DATOS:</h3>
+        <div>
+            @Html.HiddenFor(e => e.ID_Persona, new { @class = "form-control" })
+        </div>
+
+        <div id="Fila1">
+            <div>
+                @Html.TextBoxFor(e => e.nombre_Persona, "", new { @class = "form-control", @placeholder = "Introduzca su Nombre ", @autocomplete = "off" })
+                <p class="rojo"></p>
+            </div>
+
+            <div>
+                @Html.TextBoxFor(e => e.apellido_Paterno, "", new { @class = "form-control", @placeholder = "Apellido Paterno", @autocomplete = "off" })
+                <p class="rojo"></p>
+            </div>
+
+            <div>
+                @Html.TextBoxFor(e => e.apellido_Materno, "", new { @class = "form-control", @placeholder = "Apellido Materno (Opcional)", @autocomplete = "off" })
+                <p class="rojo"></p>
+            </div>
+        </div>
+
+        <div id="Fila2" style="display:none;">
+            <div>
+                @Html.TextBoxFor(e => e.CI_Persona, "", new { @class = "form-control", @placeholder = "Carnet de Identidad", @type = "number", @autocomplete = "off" })
+                <p class="rojo"></p>
+
+            </div>
+
+            <div>
+                @Html.TextBoxFor(e => e.correo_Electronico, "", new { @class = "form-control", @placeholder = "Correo Electronico", @type = "email", @autocomplete = "off" })
+                <p class="rojo"></p>
+
+            </div>
+
+            <div>
+                @Html.TextBoxFor(e => e.nro_telefono, "", new { @class = "form-control", @placeholder = "Numero de Telefono", @type = "number", @autocomplete = "off" });
+                <p class="rojo"></p>
+
+            </div>
+        </div>
+
+        <div id="Fila3" style="display:none;">
+            <div style="display:flex; flex-flow:column wrap; justify-content:center; align-items:center;">
+                <h5 style="position: relative; bottom: 20px; font-size:17px; font-weight: 600; color: #808080;">Asegúrate de que sea una buena.</h5>
+                @Html.PasswordFor(e => e.contraseña, new { @class = "form-control", @placeholder = "Contraseña", @id = "passwordFin" })
+                <div>
+                    <ul style="list-style:none; text-align:start; font-size:12px;">
+                        <li><img src="~/Imagenes/marcaX.png"> La contraseña tiene al menos una letra Mayuscula.</li>
+                        <li><img src="~/Imagenes/marcaX.png"> La contraseña tiene al menos 8 caracteres.</li>
+                        <li><img src="~/Imagenes/marcaX.png"> La contraseña contiene al menos una letra y un número.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            @Html.HiddenFor(e => e.estado, new { @class = "form-control" })
+        </div>
+
+        <div>
+            @Html.HiddenFor(e => e.rol_usuario, new { @class = "form-control" })
+        </div>
+
+        <div>
+            @Html.HiddenFor(e => e.tipo, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <a id="Guardar_Cuenta" class="btn Guardar" style="display:none;">
+                <svg class="gatos" xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 0 64 64">
+                    <path d="m37.379 12.552c-.799-.761-2.066-.731-2.827.069-.762.8-.73 2.066.069 2.828l15.342 14.551h-39.963c-1.104 0-2 .896-2 2s.896 2 2 2h39.899l-15.278 14.552c-.8.762-.831 2.028-.069 2.828.393.412.92.62 1.448.62.496 0 .992-.183 1.379-.552l17.449-16.62c.756-.755 1.172-1.759 1.172-2.828s-.416-2.073-1.207-2.862z" fill=" currentcolor" />
+                </svg>
+            </a>
+            <a class="btn Guardar" id="btn_siguiente">
+                <svg class="gatos" xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 0 64 64">
+                    <path d="m37.379 12.552c-.799-.761-2.066-.731-2.827.069-.762.8-.73 2.066.069 2.828l15.342 14.551h-39.963c-1.104 0-2 .896-2 2s.896 2 2 2h39.899l-15.278 14.552c-.8.762-.831 2.028-.069 2.828.393.412.92.62 1.448.62.496 0 .992-.183 1.379-.552l17.449-16.62c.756-.755 1.172-1.759 1.172-2.828s-.416-2.073-1.207-2.862z" fill=" currentcolor" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div id="mesajeUsuario" style="display:none;">
+        @Html.Partial("SaveSucces_full");
+    </div>
+}
+<script src="~/Scripts/Registrar_Visitas.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="cuadrado">
+
+</div>
+
+<style>
+    #cuadrado{
+        height:230px;
+        width:260px;
+        border:1px solid black;
+        position:absolute;
+        background-color:rgba(182, 255, 0, 1);
+        left:130px;
+        top:230px;
+
+    }
+    @@keyframes gatitos{
+        0% {width:208px;}
+        25% {width:156px;}
+        50% {width:105px;}
+        75% {width:52px;}
+        100% {width:0px;}
+    }
+</style>-->

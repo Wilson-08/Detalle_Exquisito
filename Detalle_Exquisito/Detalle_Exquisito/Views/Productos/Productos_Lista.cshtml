@@ -1,0 +1,51 @@
+﻿@model List<Detalle_Exquisito.Models.Productos_Models.Lista_Productos>
+@{
+    List<SelectListItem> TipoProductos = (List<SelectListItem>)ViewBag.TipoProductos;
+    ViewBag.Title = "Productos";
+    int rol = Detalle_Exquisito.Controllers.HomeController.RolActual;
+
+}
+<link href="~/Content/ProductosStyles.css" rel="stylesheet" type="text/css" />
+<h2>@ViewBag.Title</h2>
+<div class="Producto_Lista" id="Producto_Lista">
+    @foreach (var item in Model)
+    {
+        <div class="Productos" onmouseover='mostrar_Descripcion("@item.Cod_Producto")' onmouseout='ocultar_Descripcion("@item.Cod_Producto")'>
+            <div class="Prod_img">
+                @if (rol == 1 || rol == 3)
+                {
+                    <a style="left:0px;" href="/Productos/EditarProducto?Cod_Producto=@item.Cod_Producto"></a>
+                    <a style="right:0px;" href="/Productos/Eliminar_Producto?Cod_Producto=@item.Cod_Producto"></a>
+                }
+                <img src="@Url.Action("getImagen", new { id = item.Cod_Producto, @class = "card-img-top" })" alt="Alternate Text" loading="lazy" onclick='mostrar_imagen("@item.Cod_Producto");' />
+            </div>
+            <div class="Prod_Contenido">
+                <h4>@item.nombreProducto</h4>
+                <p style="font-size:12px; display:none;" id="p_@item.Cod_Producto">@item.Descripcion</p>
+                @for (int i = 0; i < TipoProductos.Count; i++)
+                {
+                    if (TipoProductos[i].Value == item.ID_tipoProd.ToString())
+                    {
+                        <p>Sabor: @TipoProductos[i].Text</p>
+                    }
+                }
+                <span style="font-weight:bold; align-self:end;">@item.precio<!---->Bs</span>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Detalle_Exquisito.Controllers.HomeController.RolActual == 1 || Detalle_Exquisito.Controllers.HomeController.RolActual == 3)
+{
+    <div class="row" style="text-align:center; padding:5px;">
+        <a href="/Productos/AgregarProducto" class="btn btn-primary">Registrar Productos</a>
+    </div>
+}
+
+
+<div id="mostrar_completa" style="display:none;">
+    <img src="/" alt="Alternate Text" id="imagen-p" style="height: 100%; width: auto; display: block; margin: auto; " />
+    <img src="~/Imagenes/equis.png" alt="Alternate Text" class="equis" onclick='document.getElementById("mostrar_completa").style.display="none";' />
+</div>
+
+<script src="~/Scripts/JS_Productos.js"></script>

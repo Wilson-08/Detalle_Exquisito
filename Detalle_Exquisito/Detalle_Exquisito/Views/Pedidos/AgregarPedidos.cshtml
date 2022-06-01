@@ -1,0 +1,268 @@
+﻿@model Detalle_Exquisito.Models.Pedidos.Pedidos_Models
+@{
+    ViewBag.Title = "Realizar Pedido";
+    List<SelectListItem> nom_Productos = (List<SelectListItem>)ViewBag.nombres_Productos;
+    List<SelectListItem> nombreClientes = (List<SelectListItem>)ViewBag.nombreClientes;
+}
+
+
+<div style="color:#00ff21; font-size:20px;">@ViewBag.Message;</div>
+
+@using (Html.BeginForm("AgregarPedidos", "Pedidos", FormMethod.Post))
+{
+    <div class="row text-center">
+        <div id="pareja" class="form-group">
+            <div id="pareja1">
+                <h2>@ViewBag.Title</h2>
+
+                <div class="form-group">
+                    @Html.LabelFor(d => d.Nro_Entrega)
+                    @Html.EditorFor(d => d.Nro_Entrega, null, new { @class = "form-group" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(d => d.Ubicacion_Latitud)
+                    @Html.EditorFor(d => d.Ubicacion_Latitud, null, new { @class = "form-group" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(d => d.Ubicacion_Longitud)
+                    @Html.EditorFor(d => d.Ubicacion_Longitud, null, new { @class = "form-group" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(d => d.fecha_Pedido)
+                    @Html.EditorFor(d => d.fecha_Pedido, null, new { @class = "form-group" })
+                </div>
+
+                @{
+                    if (Detalle_Exquisito.Controllers.AccesoController.RollGoblal == 2)
+                    {
+                        @Html.HiddenFor(d => d.ID_cliente, new { @class = "form-group" })
+                        <div class="form-group">
+                            @Html.HiddenFor(d => d.descuento_ID_P, new { @class = "form-group" })
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(d => d.ID_cliente)
+                            @Html.DropDownList("ID_cliente", nombreClientes, "Seleccione el Cliente", new { @class = "form-group" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(d => d.descuento_ID_P)
+                            @Html.EditorFor(d => d.descuento_ID_P, null, new { @class = "form-group" })
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="form-group" id="pareja2">
+                <h2>Detalles de pedido</h2>
+                <div class="form-group">
+                    <input type="number" name="Cantidad" id="Cantidad" values="" placeholder="Cantidad" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="Decoracion" id="Decoracion" values="" placeholder="Decoracion" />
+                </div>
+
+                <div class="form-group">
+                    <input type="number" name="CostoEnvio" id="CostoEnvio" values="" placeholder="Costo de Envio" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="Dedicatoria" id="Dedicatoria" values="" placeholder="Dedicatoria" />
+                </div>
+
+                <div class="form-group">
+                    @Html.DropDownList("cod_prod_dc", nom_Productos, "Seleccione un Producto", new { @class = "form-group", @required = "required" })
+                    <button onclick="Abrir()">mostrar Productos</button>
+                </div>
+
+                <input type="hidden" name="NroPedido" id="NroPedido" values="" placeholder="Numero del pedido" />
+                <input type="button" class="btn btn-success" onclick="AgregarPedido(); return false;" name="agregarPedido" id="agregarPedido" value="Agregar" />
+            </div>
+        </div>
+
+        <input type="hidden" name="Costo_Total" id="Costo_Total" value="" />
+
+
+
+        <div id="divconceptos">
+            <table class="table" id="tablaConceptos" style="width:100%;">
+                <tr>
+                    <th>cantidad</th>
+                    <th>Decoracion</th>
+                    <th>Costo Envio</th>
+                    <th>Dedicatoria</th>
+                    <th>Producto(COD)</th>
+                    <th>Total</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" name="name" id="EnviarPedido" class="btn btn-info" style="width:10%; height:38px;" disabled="disabled" value="Enviar" />
+        </div>
+    </div>
+}
+
+
+<div id="abrir" style="display:none;">
+    @Html.Partial("../Productos/_ViewParcialProductos")
+</div>
+
+
+
+<script>
+    const abrir = document.getElementById("abrir");
+    function Abrir() {
+        abrir.style.display = "block";
+    }
+
+
+    let num = 0;
+    const tabla = document.getElementById("tablaConceptos");
+    let validado = false;
+
+    function AgregarPedido() {
+        let Producto = document.getElementById("cod_prod_dc");
+        let Cantidad = document.getElementById("Cantidad").value;
+        let Decoracion = document.getElementById("Decoracion").value;
+        let CostoEnvio = document.getElementById("CostoEnvio").value;
+        let Dedicatoria = document.getElementById("Dedicatoria").value;
+        const cod_prod_dc = document.getElementById("cod_prod_dc").value;
+
+        const EnviarPedido = document.getElementById("EnviarPedido");
+
+        if (Cantidad > 0 && cod_prod_dc > 0 && CostoEnvio > 0) {
+            validado = true;
+            EnviarPedido.removeAttribute("disabled", "disabled");
+        }
+        if (validado == true) {
+            let tabla = document.getElementById("tablaConceptos");
+            let TR = document.createElement("tr");
+            let TD_Cantidad = document.createElement("td");
+            let TD_Decoracion = document.createElement("td");
+            let TD_CostoEnvio = document.createElement("td");
+            let TD_Dedicatoria = document.createElement("td");
+            let TD_Producto = document.createElement("td");
+            let TD_Total = document.createElement("td");
+
+            TR.appendChild(TD_Cantidad);
+            TR.appendChild(TD_Decoracion);
+            TR.appendChild(TD_CostoEnvio);
+            TR.appendChild(TD_Dedicatoria);
+            TR.appendChild(TD_Producto);
+            TR.appendChild(TD_Total);
+
+            TD_Cantidad.innerHTML = Cantidad;
+            TD_Decoracion.innerHTML = Decoracion;
+            TD_CostoEnvio.innerHTML = CostoEnvio;
+            TD_Dedicatoria.innerHTML = Dedicatoria;
+            TD_Producto.innerHTML = Producto.options[Producto.selectedIndex].text;
+            TD_Total.innerHTML = parseFloat(CostoEnvio) + (parseFloat(Cantidad) * parseFloat(Producto.value));
+            tabla.appendChild(TR);
+
+            let divInputs = document.getElementById("divconceptos");
+            let Hidden_Cantidad = document.createElement("input");
+            let Hidden_Decoracion = document.createElement("input");
+            let Hidden_CostoEnvio = document.createElement("input");
+            let Hidden_Dedicatoria = document.createElement("input");
+            let Hidden_Producto = document.createElement("input");
+            let Hidden_Total = document.createElement("input");
+
+            Hidden_Cantidad.name = "detalle[" + num + "].cantidad_compra";
+            Hidden_Cantidad.value = Cantidad;
+            Hidden_Cantidad.type = "hidden";
+
+            Hidden_Decoracion.name = "detalle[" + num + "].detalle_decorado";
+            Hidden_Decoracion.value = Decoracion;
+            Hidden_Decoracion.type = "hidden";
+
+            Hidden_CostoEnvio.name = "detalle[" + num + "].costoEnvio";
+            Hidden_CostoEnvio.value = CostoEnvio;
+            Hidden_CostoEnvio.type = "hidden";
+
+            Hidden_Dedicatoria.name = "detalle[" + num + "].dedicatoria";
+            Hidden_Dedicatoria.value = Dedicatoria;
+            Hidden_Dedicatoria.type = "hidden";
+
+            Hidden_Producto.name = "detalle[" + num + "].cod_prod_dc";
+            Hidden_Producto.value = Producto.options[Producto.selectedIndex].text;
+            Hidden_Producto.type = "hidden";
+
+            Hidden_Total.name = "detalle[" + num + "].Total_Detalle";
+            Hidden_Total.value = parseFloat(CostoEnvio) + (parseFloat(Cantidad) * parseFloat(Producto.value));
+            Hidden_Total.type = "hidden";
+
+            divInputs.appendChild(Hidden_Cantidad);
+            divInputs.appendChild(Hidden_Decoracion);
+            divInputs.appendChild(Hidden_CostoEnvio);
+            divInputs.appendChild(Hidden_Dedicatoria);
+            divInputs.appendChild(Hidden_Producto);
+            divInputs.appendChild(Hidden_Total);
+
+            TotalT(Cantidad, Producto, CostoEnvio);
+            num = num + 1;
+            validado = false;
+        }
+    }
+
+    let totalP = 0;
+
+    function TotalT(Cantidad, Producto, CostoEnvio) {
+        //console.log(Costo_Total);
+        totalP = totalP + parseInt(Cantidad * Producto.value) + parseInt(CostoEnvio);
+        console.log(totalP + 0);
+        document.getElementById("Costo_Total").value = totalP;
+    }
+</script>
+
+
+<style>
+    td {
+        padding-left: 10px;
+    }
+
+    #pareja {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+        #pareja input {
+            width: 50%;
+            height: 30px;
+            border: 1px solid #000;
+            border-radius: 20px;
+        }
+
+    #pareja1, #pareja2 {
+        width: 40%;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-evenly;
+        align-content: center;
+        background: #aa4b6b;
+        background: -webkit-linear-gradient(to left, #3b8d99, #6b6b83, #aa4b6b);
+        background: linear-gradient(to left, #3b8d99, #6b6b83, #aa4b6b);
+        border: 7px dashed rgba(168,15,151,1);
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="row marcos">
+    <h2>Login</h2>
+    <form action="@Url.Content("~/Acceso/Login")" method="post">
+        <div class="form-group">
+            <label>Correo Electronico: <br /><input type="text" name="User" value="" class="inputs-login" autocomplete="on" /></label>
+        </div>
+        <div class="form-group">
+            <label>Contraseña: <br /><input type="password" name="Pass" value="" class="inputs-login" /></label>
+            <div class="warning">
+                <strong class="text-primary" id="Error">@ViewBag.Error</strong>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" disabled id="botonLogin" name="name" value="Entrar" class="btn btn-success" />
+        </div>
+    </form>
+    <hr />
+    <a href="/RegistroVisitas/register_new_User" class="btn fondo">Crear Nueva Cuenta</a>
+    
+</div>
+
+
+<style>
+    .marcos {
+        width: 250px;
+        border-radius: 20px;
+        border: 2px solid #000000;
+        margin: 120px auto auto auto;
+        text-align: center;
+        background-color: rgba(145, 88, 88,0.5);
+        color: rgba(247, 216, 183, 0.6);
+    }
+    body {
+        background-image: url(../../Imagenes/curls.png);
+    }
+</style>
+<script>
+    let validarbtn1 = false;
+    let validarbtn2 = false;
+    const input_text = document.querySelectorAll("input");
+    input_text[0].addEventListener("keyup", function () {
+        if (input_text[0].value.length== 0) {
+            document.getElementById("Error").textContent = "No se permiten campos vacios";
+            validarbtn1 = false;
+        }
+        else {
+            document.getElementById("Error").textContent = "";
+            validarbtn1 = true;
+        }
+    });
+    input_text[1].addEventListener("keyup", function () {
+        if (input_text[1].value.length == 0) {
+            document.getElementById("Error").textContent = "No se permiten campos vacios";
+            validarbtn2 = false;
+        }
+        else {
+            document.getElementById("Error").textContent = "";
+            validarbtn2 = true;
+        }
+        validarBoton();
+    });
+
+    function validarBoton() {
+        if (validarbtn1 == true && validarbtn2 == true) {
+            document.getElementById("botonLogin").removeAttribute("disabled");
+        } else {
+            console.log("mal");
+            document.getElementById("botonLogin").setAttribute("disabled","disabled");
+        }
+    }
+
+</script>

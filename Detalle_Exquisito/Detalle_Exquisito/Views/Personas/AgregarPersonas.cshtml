@@ -1,0 +1,91 @@
+﻿@model Detalle_Exquisito.Models.Personas_Modelos.PersonasModel
+@{
+    ViewBag.Title = "Registro de Personas";
+    List<SelectListItem> Cargo = (List<SelectListItem>)ViewBag.Cargos;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AgregarPersonas", "Personas", FormMethod.Post))
+{
+    <div>
+        <div>
+            @Html.LabelFor(d => d.CI_Persona)
+            @Html.TextBoxFor(d => d.CI_Persona, "", new { @class = "form-control", @type = "number", @autocomplete = "off"})
+            @Html.ValidationMessageFor(d => d.CI_Persona, null, new { @class = "rojo" })
+        </div>
+        <div>
+            @Html.LabelFor(d => d.nombre_Persona)
+            @Html.TextBoxFor(d => d.nombre_Persona, "", new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(d => d.nombre_Persona, null, new { @class = "rojo" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.apellido_Paterno)
+            @Html.TextBoxFor(d => d.apellido_Paterno, "", new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(d => d.apellido_Paterno, null, new { @class = "rojo" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.apellido_Materno)
+            @Html.TextBoxFor(d => d.apellido_Materno, "", new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(d => d.apellido_Materno, null, new { @class = "rojo" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.nro_telefono)
+            @Html.TextBoxFor(d => d.nro_telefono, "", new { @class = "form-control", @type = "number", @autocomplete = "off" })
+            @Html.ValidationMessageFor(d => d.nro_telefono, null, new { @class = "rojo" })
+
+        </div>
+        @{
+            var list = new List<SelectListItem>()
+    {
+                new SelectListItem()
+            {
+                Text="Cliente",
+                Value="C"
+            },
+            new SelectListItem()
+            {
+                Text="Empleado",
+                Value="E"
+            }
+            };
+        }
+        <div>
+            @Html.LabelFor(d => d.tipo)
+            @Html.DropDownListFor(d => d.tipo, list, new { @class = "form-control" })
+        </div>
+        @if (Detalle_Exquisito.Controllers.HomeController.AlertaGlobal == 0)
+        {
+            <div style="display:none;">
+                @Html.LabelFor(d => d.id_cargoEmpleado)
+                @Html.DropDownList("id_cargoEmpleado", Cargo, "selecciona Algo", new { @class = "form-control", @disabled = "disabled" })
+            </div>
+        }
+
+
+        <div style="margin-top:10px;">
+            <input type="submit" name="name" value="Registrar" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+@Html.Partial("../Usuarios/_Error_Ingreso")
+
+<script>
+    var Persona_selects = document.querySelectorAll("select");
+    var Personadivs = document.querySelectorAll("div");
+
+    Persona_selects[0].addEventListener("click", function () {
+        if (Persona_selects[0].value=="E") {
+            Personadivs[13].style = "display:block";
+            Persona_selects[1].removeAttribute("disabled","disabled");
+        } else {
+            Personadivs[13].style = "display:none";
+            Persona_selects[1].setAttribute("disabled", "disabled");
+        }
+        
+    });
+</script>

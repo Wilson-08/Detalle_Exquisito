@@ -1,0 +1,66 @@
+﻿@model Detalle_Exquisito.Models.Usuarios_Modelos.Tabla_User
+@{
+    ViewBag.Title = "Registro de nuevo usuario:";
+    List<SelectListItem> Roles_items = (List<SelectListItem>)ViewBag.Roles_items;
+    List<SelectListItem> nomPersonas = (List<SelectListItem>)ViewBag.nomPersonas;
+}
+
+<h3 style="font-weight:600;">@ViewBag.Title</h3>
+
+@using (Html.BeginForm("Agregar_new_users", "Usuarios", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.correo_Electronico)
+                @Html.TextBoxFor(d => d.correo_Electronico, "", new { @class = "form-control",@autocomplete="off" })
+                @Html.ValidationMessageFor(d => d.correo_Electronico, null, new { @class = "rojo" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(d => d.contraseña)
+                @Html.PasswordFor(d => d.contraseña, new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.contraseña, null, new { @class = "rojo" })
+            </div>
+            <br />
+            @{
+                var list = new List<SelectListItem>()
+                    {
+                    new SelectListItem()
+                    {
+                        Text="Deshabilitado",
+                        Value="Deshabilitado"
+                    },
+                    new SelectListItem()
+                    {
+                        Text="Habilitado",
+                        Value="Habilitado"
+                    }
+                    };
+            }
+
+            <div>
+                @Html.LabelFor(d => d.estado)
+                @Html.DropDownListFor(d => d.estado, list, "Estado de la cuenta", new { @class = "form-control" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(d => d.rol_usuario)
+                @Html.DropDownListFor(d => d.rol_usuario, Roles_items, new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.rol_usuario, null, new { @class = "rojo" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(d => d.ID_Persona)
+                @Html.DropDownListFor(d => d.ID_Persona, nomPersonas, new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.ID_Persona, null, new { @class = "rojo" })
+            </div>
+
+            <div style="margin-top:10px;">
+                <input type="submit" name="name" value="Registrar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@Html.Partial("_Error_Ingreso")

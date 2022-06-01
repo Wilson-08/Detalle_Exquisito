@@ -1,0 +1,32 @@
+﻿
+@{
+    if (Detalle_Exquisito.Controllers.HomeController.AlertaGlobal == 1 || Detalle_Exquisito.Controllers.HomeController.AlertaGlobal == 2 || Detalle_Exquisito.Controllers.HomeController.AlertaGlobal == 3)
+    {
+        <div class="windows-blank" id="message_windows">
+            <div class="windows-alert">
+                <img src="~/Imagenes/error_datos.png" alt="Alternate Text" />
+                @if (Detalle_Exquisito.Controllers.HomeController.AlertaGlobal == 1)
+                {
+                    <label class="text-center">El correo electronico introducido ya existe, ingrese uno nuevo.</label>
+                }
+                @if (Detalle_Exquisito.Controllers.HomeController.AlertaGlobal == 2)
+                {
+                    <label class="text-center">La persona que eligio ya cuenta con un usuario registrado, Escoja uno de nuevo.</label>
+                }
+                @if (Detalle_Exquisito.Controllers.HomeController.AlertaGlobal == 3) 
+                {
+                    <label class="text-center">El carnet de identidad que ingreso ya esta registrado, verifique si escribio el suyo correctamente.</label>
+                }
+                <button class="btn btn-info" onclick="Close_Window()">Aceptar</button>
+            </div>
+        </div>
+        Detalle_Exquisito.Controllers.HomeController.AlertaGlobal = 0;
+    }
+}
+
+<script>
+    function Close_Window() {
+        var ventana_emergente = document.getElementById("message_windows");
+        ventana_emergente.style.display = "none";
+    }
+</script>

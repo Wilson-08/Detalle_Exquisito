@@ -1,0 +1,118 @@
+﻿
+@using Detalle_Exquisito.Models.Productos_Models
+@{
+    List<SelectListItem> TipoProductos = (List<SelectListItem>)ViewBag.TipoProductos;
+}
+<div class="windows-blank">
+    <div class="row productos">
+        <div class="col-md-12">
+            <h4><strong>Productos</strong></h4>
+            <table class="table" id="tabla">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Tipo de Producto</th>
+                </tr>
+                @{
+                    Consulta_product abrir = new Consulta_product();
+                    foreach (var item in abrir.GetProductos())
+                    {
+                        <tr>
+                            <td> @item.nombreProducto </td>
+                            <td> @item.precio Bs</td>
+                            @for (int i = 0; i < TipoProductos.Count; i++)
+                            {
+                                if (TipoProductos[i].Value==item.ID_tipoProd.ToString()) {
+                                    <td> @TipoProductos[i].Text</td>
+                                    <td>    
+                                        <button class="btn btn-info" onclick='abrir2("@item.Cod_Producto")'>Mostrar</button>
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                }
+            </table>
+            <button onclick="cerrar()" class="btn btn-info">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+<div id="abrir2" style="display:none;">  
+    <img src="/" alt="Alternate Text" id="imaginacion" style="height: 100%; width: auto; display:block; margin:auto; "/>
+    <img src="~/Imagenes/equis.png" alt="Alternate Text" class="equis" onclick='document.getElementById("abrir2").style.display="none";'/>
+</div>
+
+
+<style>
+    #tabla {
+        height: 75%;
+        width: 100%;
+        background-color: antiquewhite;
+        display: block;
+        overflow: scroll;
+        border-radius: 5%;
+        text-align: center;
+        z-index:9;
+    }
+    #tabla::-webkit-scrollbar{
+        width:8px;
+    }
+    #tabla::-webkit-scrollbar-thumb{
+        background-color:darkgray;
+        border-radius:10px;
+    }
+    .productos {
+        width: 500px;
+        height: 400px;
+        display:flex;
+        flex-flow:column wrap;
+        margin: 100px auto;
+        background-color:burlywood;
+        border-radius:20px;
+        text-align:center;
+        z-index:10;
+    }
+    th {
+        text-align:center;
+    }
+    #abrir2 {
+        position: fixed;
+        top: 15%;
+        left: 24%;
+        z-index: 800;
+        width: 70rem;
+        height: 50rem;
+        overflow: hidden;
+        display:block;
+        border:2px solid #000;
+    }
+    .equis {
+        position:absolute;
+        display:block;
+        width: 23px;
+        clip-path: circle(50% at center);
+        transition: width 1s;
+        top:0px;
+        right:0px;
+    }
+    .equis:hover{
+        width:30px;
+        background-color:rgba(88,88,88,0.1);
+        border:1px solid rgba(88,88,88,0,2);
+    }
+</style>
+<script>
+    function cerrar() {
+        document.getElementById("abrir").style.display = "none";
+    }
+    function abrir2(Cod_Producto) {
+        const codigo = Cod_Producto + "";
+        const part1 = "/Productos/getImagen/" + Cod_Producto;
+
+        document.getElementById("imaginacion").setAttribute("src", part1);
+        document.getElementById("abrir2").style.display = "block";
+    }
+
+
+</script>

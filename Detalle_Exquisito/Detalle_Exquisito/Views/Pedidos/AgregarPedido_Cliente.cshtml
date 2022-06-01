@@ -1,0 +1,143 @@
+﻿@model Detalle_Exquisito.Models.Pedidos.Pedidos_Models
+@{
+    List<SelectListItem> TipoProductos = (List<SelectListItem>)ViewBag.TipoProductos;
+    ViewBag.Title = "Nuevo Pedido";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/PedidosStyles.css" rel="stylesheet" type="text/css" />
+
+<div id="Pedido_agregar">
+    <div class="row" style="width: 65%; margin-left:2%;">
+        <h2 style="background-color: rgba(255, 99, 71,0.3); text-align: center; font-weight: bold; color: rgba(218, 247, 166,0.8); border: 5px dashed rgb(255, 87, 51); " id="loco">@ViewBag.Title</h2>
+        <div class="fila-4" style="position:relative; width:100%;">
+            @{
+                int i1 = 0;
+            }
+
+            @foreach (var item in ViewBag.Productos_Cargados)
+            {
+                <div class="tarjetas-prod">
+                    <div style="width:100%; height:70%; position:relative;" class="imagenes_Lista">
+                        @if (Session["Rol"].ToString() == "1")
+                        {
+                            <a style="left:0px;" href="/Productos/EditarProducto?Cod_Producto=@item.Cod_Producto"></a>
+                            <a style="right:0px;" href="@item.Cod_Producto"></a>
+                        }
+                        <img onclick='mostrar_imagen("@item.Cod_Producto");' loading="eager" style="width: 100%; height: auto;" src="@Url.Action("getImagen", "Productos",new {id=item.Cod_Producto, @class="card-img-top"})" alt="Alternate Text" />
+                    </div>
+                    <div class="Div2">
+                        @if (@item.nombreProducto.Length > 24)
+                        {
+                            <h4 style="text-align:center; font-size:15px; font-weight:700;">@item.nombreProducto</h4>
+                        }
+                        else
+                        {
+                            <h4 style="text-align: center; font-size: 18px;">@item.nombreProducto</h4>
+                        }
+                        <p class="card-text">
+                            @for (int i = 0; i < TipoProductos.Count; i++)
+                            {
+                                if (TipoProductos[i].Value == item.ID_tipoProd.ToString())
+                                {
+                                <p>Sabor: @TipoProductos[i].Text</p>
+                            }
+                        }
+                            </p>
+                            <p style="text-align:right;">@item.precio<!---->bs</p>
+                        </div>
+                    <div class="Div3">
+                        <div id="divCant_@i1.ToString()" class="DivCantidades">
+                            <button style="flex: 1 1 3rem; min-width: 2rem;" name="bajar" id="bajar_@i1.ToString();" onclick='bajar("bajar_@i1.ToString();","@item.Cod_Producto", "@item.precio")'>-</button>
+                            <input class="textosCantidad" type="number" onmouseover='document.getElementById("dedicatoria_@i1.ToString()").style.display = "flex"; document.getElementById("divCant_@i1.ToString()").style.display = "none";' name="cantidad_@i1.ToString()" value="0" id="cantidad_@i1.ToString()" min="0" />
+                            <button style="flex: 1 1 3rem; min-width:2rem;" name="subir" id="subir_@i1.ToString();" onclick='subir("subir_@i1.ToString();", "@item.Cod_Producto", "@item.nombreProducto", "@item.precio")'>+</button>
+                        </div>
+
+                        <div id="dedicatoria_@i1.ToString()" class="DivDedicatorias" style="display:none;">
+                            <input class="textosDedicatorias" type="text" placeholder="Escribe una Dedicatoria..." id="dedicatoria_@i1.ToString()" name="dedicatoria_@i1.ToString();" value="" style="" />
+                            <span class="btn btn-primary" onclick='document.getElementById("dedicatoria_@i1.ToString()").style.display = "none"; document.getElementById("divCant_@i1.ToString()").style.display = "flex";'>Save</span>
+                        </div>
+                    </div>
+                    </div>
+                    i1++;
+                }
+        </div>
+    </div>
+
+    @using (Html.BeginForm("AgregarPedido_Cliente", "Pedidos", FormMethod.Post, new { @id = "Pedido_ordenes" }))
+    {
+        <h4 style="font-weight:bold; text-align:center; margin:7px 0px 3px 0px;">Pedidos:</h4>
+        <table class="table" id="Lista_Orden">
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Costo</th>
+            </tr>
+        </table>
+        <div id="TotalCosto">
+            <h5 style="font-weight:bold;">Total:&nbsp</h5>
+            <span id="Costo_Total">0</span>
+            <span>Bs</span>
+        </div>
+        <div id="formulario_Final" style="border: 7px inset #A5A4A5; ">
+            <img src="~/Imagenes/equis.png" class="equis" onclick='document.getElementById("formulario_Final").style.display="none"' />
+            <input type="hidden" name="Ubicacion_Latitud" id="Ubicacion_Latitud" value="-17.781518506466846" />
+            <input type="hidden" name="Ubicacion_Longitud" id="Ubicacion_Longitud" value="-63.181961124026" />
+            <div style="width: 65%; height: 100%;">
+                <div id="mapa" style="width: 100%; height: 100%; opacity:0.9;">
+
+                </div>
+            </div>
+            <div id="mapa_textos">
+                <div style="display:block; position:relative;">
+                    <h1 style="font-family:'Comic Sans MS'; text-align:right; margin-right:10px; border:5px solid #ffffff; width:190px; padding-right:10px; border-radius:30px;">Coloca tu Ubicación</h1>
+                    <img src="~/Imagenes/apuntar2.svg" alt="Alternate Text" style="position:absolute; top:84%; right:76%;" />
+                </div>
+                <br />
+                <div>
+                    <label for="Nro_Entrega">Numero de la casa Ubicada: </label>
+                    @Html.TextBoxFor(d => d.Nro_Entrega, "", new { @class = "form-control", @type = "number", @style = "width:50px; display:inline-block;" }) <br />
+                    @Html.ValidationMessageFor(d => d.Nro_Entrega, "", new { @class = "rojo" })
+                </div>
+                <br />
+                <div>
+
+                    <label>@Html.LabelFor(d => d.fecha_Pedido):</label>
+                    @Html.EditorFor(d => d.fecha_Pedido, null, new { @class = "form-group" }) <br />
+                    @Html.ValidationMessageFor(d => d.fecha_Pedido, "", new { @class = "rojo" })
+                </div>
+                <br />
+                <div>
+                    <label>Hora del Envio:</label>
+                    <input type="time" name="horaPedido" value="" class="form-group" />
+                </div>
+                <br />
+                <input type="submit" name="name" id="EnviarPedido" class="btn btn-info" style="margin-right:10px;" value="Enviar" />
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="row" style="text-align:center; padding:5px;">
+    <a class="btn btn-primary" id="Pedir">Pedir Ya</a>
+</div>
+
+<div id="mostrar_completa" style="display:none;">
+    <img src="/" alt="Alternate Text" id="imagen-p" style="height: 100%; width: auto; display: block; margin: auto; " />
+    <img src="~/Imagenes/equis.png" alt="Alternate Text" class="equis" onclick='document.getElementById("mostrar_completa").style.display="none";' />
+</div>
+
+
+
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/JS_Pedidos.js"></script>
+<script src="~/Scripts/Mapa.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+<style>
+    .gm-svpc {
+        display: none;
+    }
+</style>
+
+<!--ARRASTRAR EL PUNTERO MENSAJE-->

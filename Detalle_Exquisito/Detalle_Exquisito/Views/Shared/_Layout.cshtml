@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div style="display:flex; flex-flow:row wrap; justify-content:space-around;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Detalle Exquisito", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse" style="position:relative;">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
+                    @if (Session["User"] != null)
+                    {
+                        if (Session["Rol"].ToString() == "1")
+                        {
+                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                            <li>@Html.ActionLink("Personas", "Personas_Lista", "Personas")</li>
+                            //<li>@Html.ActionLink("Productos", "Productos_Lista", "Productos")</li>
+                        }
+                        <li>@Html.ActionLink("Realizar Pedido", "ListaPedidos", "Pedidos")</li>
+                    }
+                    <li>@Html.ActionLink("Productos", "Productos_Lista", "Productos")</li>
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-navclass=nav navbar-nav">
+                    @if (Session["User"] != null)
+                    {
+                    <li><a href="/Acceso/Logout" class="content-rigth" id="enlace_User">@Session["Nombre"]</a></li>
+                    }
+                    else
+                    {
+                    <li>@Html.ActionLink("Iniciar Sesion", "Login", "Acceso")</li>
+                    }
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class=" body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<style>
+    #enlace_User:hover{
+        font-size:16px;
+    }
+    #enlace_User {
+        border: 1px solid #ffff;
+        border-radius: 20px;
+        background-color: rgba(79, 75, 75,0.4);
+        color: #f9f9b3;
+    }
+</style>
+
+<script>
+    const logout_Session = document.getElementById("enlace_User");
+    var nombre1;
+    var nombre2="Cerrar Sesion";
+    var guardar = false;
+
+    logout_Session.addEventListener("mouseover", function () {
+        if (guardar==false) {
+            nombre1 = logout_Session.textContent;
+        }
+        logout_Session.textContent = nombre2;
+        guardar = true;
+    });
+
+    logout_Session.addEventListener("mouseout", function () {
+        logout_Session.textContent = nombre1;
+    });
+</script>

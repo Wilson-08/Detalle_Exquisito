@@ -1,0 +1,49 @@
+﻿@model Detalle_Exquisito.Models.Productos_Models.modelo_Producto
+@{
+    ViewBag.Title = "Agregar Nuevos Productos";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("AgregarProducto", "Productos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    <div>
+        <div>
+            @Html.LabelFor(d => d.Cod_Producto)
+            @Html.TextBoxFor(d => d.Cod_Producto, "", new { @class = "form-control", @autocomplete = "off", @maxlength = "25" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.foto)
+            @Html.TextBoxFor(d => d.foto, new { type = "file", accept = ".jpg, .jpeg, .png" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.nombreProducto)
+            @Html.TextBoxFor(d => d.nombreProducto, "", new { @class = "form-control", @autocomplete = "off", @maxlength = "100" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.Descripcion)
+            @Html.TextBoxFor(d => d.Descripcion, "", new { @class = "form-control", @autocomplete = "off", @maxlength = "300" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.precio)
+            @Html.TextBoxFor(d => d.precio, "", new { @class = "form-control", @type = "number", @autocomplete = "off" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.ID_tipoProd)
+            @Html.TextBoxFor(d => d.ID_tipoProd, "", new { @class = "form-control", @type = "number", @autocomplete = "off" })
+        </div>
+
+        <div>
+            @Html.LabelFor(d => d.ID_Festividad)
+            @Html.TextBoxFor(d => d.ID_Festividad, "", new { @class = "form-control", @autocomplete = "off" })
+        </div>
+        <div style="margin-top:10px;">
+            <input type="submit" name="name" value="Registrar" class="btn btn-primary" />
+        </div>
+    </div>
+}

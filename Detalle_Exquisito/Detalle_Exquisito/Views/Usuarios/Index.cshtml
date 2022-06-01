@@ -1,0 +1,56 @@
+﻿@model List<Detalle_Exquisito.Models.Usuarios_Modelos.Lista_Usuarios>
+
+@{
+    ViewBag.Title = "Usuarios Registrados:";
+    List<SelectListItem> item2 = (List<SelectListItem>)ViewBag.nomPersonas;
+    List<SelectListItem> item3 = (List<SelectListItem>)ViewBag.Roles_items;
+}
+<h2 class="row">@ViewBag.title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Correo Electronico</th>
+                <th>Contraseña</th>
+                <th>Estado</th>
+                <th>rol</th>
+                <th>Propietario</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.correo_Electronico</td>
+                    <td>@item.contraseña.Substring(0,9)...</td>
+                    <td>@item.estado</td>
+                    @for (int i = 0; i < item3.Count; i++)
+                    {
+                        if (item.rol.ToString()==item3[i].Value) 
+                        {
+                            <td>@item3[i].Text</td>
+                        }
+                    }
+
+                    @for (int i = 0; i < item2.Count; i++)
+                    {
+                        if (item.ID_Persona.ToString() == item2[i].Value)
+                        {
+                            
+                            <td>@item2[i].Text</td>
+                        }
+                    }
+                    <td>
+                        <a href="/Usuarios/Editar_usuarios?id=@item.correo_Electronico" class="btn btn-default">Editar</a>
+                        <a href="/Usuarios/Eliminar_users?id=@item.correo_Electronico" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<div class="row" style="text-align:center; padding:5px;">
+    <a href="/Usuarios/Agregar_new_users" class="btn btn-primary">Agregar Nuevos Usuarios</a>
+</div>
+
