@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BD_Detalle_ExquisitoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cargo_Empleo">
+    <Key>
+      <PropertyRef Name="ID_EmCar" />
+    </Key>
+    <Property Name="ID_EmCar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_car" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Id_Per" />
+    </Key>
+    <Property Name="Id_Per" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Decoracion_Extra">
+    <Key>
+      <PropertyRef Name="ID_Decoracion" />
+    </Key>
+    <Property Name="ID_Decoracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion_Deco" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="costo" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Descuento">
+    <Key>
+      <PropertyRef Name="id_descuento" />
+    </Key>
+    <Property Name="id_descuento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="porcentaje" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="montoMinimo" Type="int" />
+    <Property Name="montoMaximo" Type="int" />
+    <Property Name="estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Descuento_Cliente">
+    <Key>
+      <PropertyRef Name="id_DesCl" />
+    </Key>
+    <Property Name="id_DesCl" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mes_descuento" Type="date" Nullable="false" />
+    <Property Name="id_desc" Type="int" Nullable="false" />
+    <Property Name="Id_Per" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Detalle_Decoracion_Extras">
+    <Key>
+      <PropertyRef Name="Nro_DDE" />
+    </Key>
+    <Property Name="Nro_DDE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="foto_Ubicacion" Type="varchar" MaxLength="1" />
+    <Property Name="descripcion" Type="varchar" MaxLength="150" />
+    <Property Name="ID_decoracion_extra" Type="int" Nullable="false" />
+    <Property Name="ID_detalle_Pedido" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="detalle_Pedido">
+    <Key>
+      <PropertyRef Name="id_detalle" />
+    </Key>
+    <Property Name="id_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cantidad_compra" Type="int" Nullable="false" />
+    <Property Name="fecha_entregado" Type="datetime" Nullable="false" />
+    <Property Name="dedicatoria" Type="varchar" MaxLength="200" />
+    <Property Name="Total_Detalle" Type="float" Nullable="false" />
+    <Property Name="cod_prod_dc" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Nropedido" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Detalle_producto">
+    <Key>
+      <PropertyRef Name="Cod_Producto_Detalle" />
+    </Key>
+    <Property Name="Cod_Producto_Detalle" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="foto" Type="image" Nullable="false" />
+    <Property Name="nombreProducto" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="precio" Type="float" Nullable="false" />
+    <Property Name="Cod_Producto" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Detalle_Productos_Extras">
+    <Key>
+      <PropertyRef Name="Nro_DPE" />
+    </Key>
+    <Property Name="Nro_DPE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="foto_Ubicacion" Type="varchar" MaxLength="1" />
+    <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="ID_extra_Producto" Type="int" Nullable="false" />
+    <Property Name="ID_detalle_Pedido" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="Id_Per" />
+    </Key>
+    <Property Name="Id_Per" Type="int" Nullable="false" />
+    <Property Name="ID_EmCar" Type="int" />
+  </EntityType>
+  <EntityType Name="Extra_Productos">
+    <Key>
+      <PropertyRef Name="ID_Expro" />
+    </Key>
+    <Property Name="ID_Expro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="foto" Type="image" />
+    <Property Name="Costo_total" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Festividad">
+    <Key>
+      <PropertyRef Name="ID_festividad" />
+    </Key>
+    <Property Name="ID_festividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreFestividad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_Dia" Type="date" />
+  </EntityType>
+  <EntityType Name="modulo">
+    <Key>
+      <PropertyRef Name="id_modulo" />
+    </Key>
+    <Property Name="id_modulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_modulo" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Operaciones">
+    <Key>
+      <PropertyRef Name="id_opera" />
+    </Key>
+    <Property Name="id_opera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_Tarea" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_mod" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Operaciones_Menu">
+    <Key>
+      <PropertyRef Name="id_OpeMen" />
+    </Key>
+    <Property Name="id_OpeMen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rol_seleccion" Type="int" Nullable="false" />
+    <Property Name="id_operaciones" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pago">
+    <Key>
+      <PropertyRef Name="Cod_Pago" />
+    </Key>
+    <Property Name="Cod_Pago" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Forma_Pago" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="fecha_actual" Type="datetime" />
+    <Property Name="nombreDestinatario" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Nro_pedidop" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="Nropedido" />
+    </Key>
+    <Property Name="Nropedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_Pedido" Type="datetime" Nullable="false" />
+    <Property Name="costoEnvio" Type="float" Nullable="false" />
+    <Property Name="Nro_Entrega" Type="int" />
+    <Property Name="Ubicacion_Latitud" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Ubicacion_Longitud" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Costo_Total" Type="float" Nullable="false" />
+    <Property Name="ID_cliente" Type="int" Nullable="false" />
+    <Property Name="descuento_P" Type="int" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="Id_Per" />
+    </Key>
+    <Property Name="Id_Per" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CI_Persona" Type="int" Nullable="false" />
+    <Property Name="nombre_Persona" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="apellido_Paterno_cliente" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="apellido_Materno_cliente" Type="varchar" MaxLength="20" />
+    <Property Name="nro_telefono" Type="int" Nullable="false" />
+    <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="Cod_Producto" />
+    </Key>
+    <Property Name="Cod_Producto" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="foto" Type="image" Nullable="false" />
+    <Property Name="nombreProducto" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="precio" Type="float" Nullable="false" />
+    <Property Name="ID_tipoProd" Type="int" Nullable="false" />
+    <Property Name="ID_festividad_P" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id_rol" />
+    </Key>
+    <Property Name="Id_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_rol" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Producto">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="correo_Electronico" />
+    </Key>
+    <Property Name="correo_Electronico" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="contraseña" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="150" />
+    <Property Name="rol" Type="int" Nullable="false" />
+    <Property Name="ID_Persona" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Cliente__Id_Per__3A81B327">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="Id_Per" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Id_Per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Descuento__id_de__3D5E1FD2">
+    <End Role="Descuento" Type="Self.Descuento" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Descuento_Cliente" Type="Self.Descuento_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Descuento">
+        <PropertyRef Name="id_descuento" />
+      </Principal>
+      <Dependent Role="Descuento_Cliente">
+        <PropertyRef Name="id_desc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Descuento__Id_Pe__3E52440B">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Descuento_Cliente" Type="Self.Descuento_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id_Per" />
+      </Principal>
+      <Dependent Role="Descuento_Cliente">
+        <PropertyRef Name="Id_Per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Detalle_D__ID_de__00200768">
+    <End Role="detalle_Pedido" Type="Self.detalle_Pedido" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle_Decoracion_Extras" Type="Self.Detalle_Decoracion_Extras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="detalle_Pedido">
+        <PropertyRef Name="id_detalle" />
+      </Principal>
+      <Dependent Role="Detalle_Decoracion_Extras">
+        <PropertyRef Name="ID_detalle_Pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Detalle_D__ID_de__7F2BE32F">
+    <End Role="Decoracion_Extra" Type="Self.Decoracion_Extra" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle_Decoracion_Extras" Type="Self.Detalle_Decoracion_Extras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Decoracion_Extra">
+        <PropertyRef Name="ID_Decoracion" />
+      </Principal>
+      <Dependent Role="Detalle_Decoracion_Extras">
+        <PropertyRef Name="ID_decoracion_extra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Detalle_p__Cod_P__4CA06362">
+    <End Role="producto" Type="Self.producto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle_producto" Type="Self.Detalle_producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="Cod_Producto" />
+      </Principal>
+      <Dependent Role="Detalle_producto">
+        <PropertyRef Name="Cod_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detalle_P__cod_p__76969D2E">
+    <End Role="producto" Type="Self.producto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detalle_Pedido" Type="Self.detalle_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="Cod_Producto" />
+      </Principal>
+      <Dependent Role="detalle_Pedido">
+        <PropertyRef Name="cod_prod_dc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Detalle_P__ID_de__7A672E12">
+    <End Role="detalle_Pedido" Type="Self.detalle_Pedido" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle_Productos_Extras" Type="Self.Detalle_Productos_Extras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="detalle_Pedido">
+        <PropertyRef Name="id_detalle" />
+      </Principal>
+      <Dependent Role="Detalle_Productos_Extras">
+        <PropertyRef Name="ID_detalle_Pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Detalle_P__ID_ex__797309D9">
+    <End Role="Extra_Productos" Type="Self.Extra_Productos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle_Productos_Extras" Type="Self.Detalle_Productos_Extras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Extra_Productos">
+        <PropertyRef Name="ID_Expro" />
+      </Principal>
+      <Dependent Role="Detalle_Productos_Extras">
+        <PropertyRef Name="ID_extra_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detalle_P__Nrope__75A278F5">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detalle_Pedido" Type="Self.detalle_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="Nropedido" />
+      </Principal>
+      <Dependent Role="detalle_Pedido">
+        <PropertyRef Name="Nropedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__ID_EmC__412EB0B6">
+    <End Role="Cargo_Empleo" Type="Self.Cargo_Empleo" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo_Empleo">
+        <PropertyRef Name="ID_EmCar" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="ID_EmCar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__Id_Per__4222D4EF">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="Id_Per" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="Id_Per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Operacion__id_mo__286302EC">
+    <End Role="modulo" Type="Self.modulo" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modulo">
+        <PropertyRef Name="id_modulo" />
+      </Principal>
+      <Dependent Role="Operaciones">
+        <PropertyRef Name="id_mod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Operacion__id_op__2C3393D0">
+    <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Operaciones_Menu" Type="Self.Operaciones_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operaciones">
+        <PropertyRef Name="id_opera" />
+      </Principal>
+      <Dependent Role="Operaciones_Menu">
+        <PropertyRef Name="id_operaciones" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Operacion__rol_s__2B3F6F97">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Operaciones_Menu" Type="Self.Operaciones_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id_rol" />
+      </Principal>
+      <Dependent Role="Operaciones_Menu">
+        <PropertyRef Name="rol_seleccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pago__Nro_pedido__02FC7413">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="Nropedido" />
+      </Principal>
+      <Dependent Role="Pago">
+        <PropertyRef Name="Nro_pedidop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedido__descuent__70DDC3D8">
+    <End Role="Descuento" Type="Self.Descuento" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Descuento">
+        <PropertyRef Name="id_descuento" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="descuento_P" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedido__ID_clien__6FE99F9F">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="Id_Per" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="ID_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__producto__ID_fes__49C3F6B7">
+    <End Role="Festividad" Type="Self.Festividad" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="producto" Type="Self.producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Festividad">
+        <PropertyRef Name="ID_festividad" />
+      </Principal>
+      <Dependent Role="producto">
+        <PropertyRef Name="ID_festividad_P" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__producto__ID_tip__48CFD27E">
+    <End Role="Tipo_Producto" Type="Self.Tipo_Producto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="producto" Type="Self.producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Producto">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="producto">
+        <PropertyRef Name="ID_tipoProd" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__ID_Pers__35BCFE0A">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="Id_Per" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="ID_Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__rol__34C8D9D1">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id_rol" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD_Detalle_ExquisitoModelStoreContainer">
+    <EntitySet Name="Cargo_Empleo" EntityType="Self.Cargo_Empleo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Decoracion_Extra" EntityType="Self.Decoracion_Extra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Descuento" EntityType="Self.Descuento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Descuento_Cliente" EntityType="Self.Descuento_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle_Decoracion_Extras" EntityType="Self.Detalle_Decoracion_Extras" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detalle_Pedido" EntityType="Self.detalle_Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle_producto" EntityType="Self.Detalle_producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle_Productos_Extras" EntityType="Self.Detalle_Productos_Extras" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Extra_Productos" EntityType="Self.Extra_Productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Festividad" EntityType="Self.Festividad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="modulo" EntityType="Self.modulo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operaciones" EntityType="Self.Operaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operaciones_Menu" EntityType="Self.Operaciones_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Producto" EntityType="Self.Tipo_Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Cliente__Id_Per__3A81B327" Association="Self.FK__Cliente__Id_Per__3A81B327">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Descuento__id_de__3D5E1FD2" Association="Self.FK__Descuento__id_de__3D5E1FD2">
+      <End Role="Descuento" EntitySet="Descuento" />
+      <End Role="Descuento_Cliente" EntitySet="Descuento_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Descuento__Id_Pe__3E52440B" Association="Self.FK__Descuento__Id_Pe__3E52440B">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Descuento_Cliente" EntitySet="Descuento_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Detalle_D__ID_de__00200768" Association="Self.FK__Detalle_D__ID_de__00200768">
+      <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+      <End Role="Detalle_Decoracion_Extras" EntitySet="Detalle_Decoracion_Extras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Detalle_D__ID_de__7F2BE32F" Association="Self.FK__Detalle_D__ID_de__7F2BE32F">
+      <End Role="Decoracion_Extra" EntitySet="Decoracion_Extra" />
+      <End Role="Detalle_Decoracion_Extras" EntitySet="Detalle_Decoracion_Extras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Detalle_p__Cod_P__4CA06362" Association="Self.FK__Detalle_p__Cod_P__4CA06362">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="Detalle_producto" EntitySet="Detalle_producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detalle_P__cod_p__76969D2E" Association="Self.FK__detalle_P__cod_p__76969D2E">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Detalle_P__ID_de__7A672E12" Association="Self.FK__Detalle_P__ID_de__7A672E12">
+      <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+      <End Role="Detalle_Productos_Extras" EntitySet="Detalle_Productos_Extras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Detalle_P__ID_ex__797309D9" Association="Self.FK__Detalle_P__ID_ex__797309D9">
+      <End Role="Extra_Productos" EntitySet="Extra_Productos" />
+      <End Role="Detalle_Productos_Extras" EntitySet="Detalle_Productos_Extras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detalle_P__Nrope__75A278F5" Association="Self.FK__detalle_P__Nrope__75A278F5">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__ID_EmC__412EB0B6" Association="Self.FK__Empleado__ID_EmC__412EB0B6">
+      <End Role="Cargo_Empleo" EntitySet="Cargo_Empleo" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__Id_Per__4222D4EF" Association="Self.FK__Empleado__Id_Per__4222D4EF">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Operacion__id_mo__286302EC" Association="Self.FK__Operacion__id_mo__286302EC">
+      <End Role="modulo" EntitySet="modulo" />
+      <End Role="Operaciones" EntitySet="Operaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Operacion__id_op__2C3393D0" Association="Self.FK__Operacion__id_op__2C3393D0">
+      <End Role="Operaciones" EntitySet="Operaciones" />
+      <End Role="Operaciones_Menu" EntitySet="Operaciones_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Operacion__rol_s__2B3F6F97" Association="Self.FK__Operacion__rol_s__2B3F6F97">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Operaciones_Menu" EntitySet="Operaciones_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pago__Nro_pedido__02FC7413" Association="Self.FK__Pago__Nro_pedido__02FC7413">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="Pago" EntitySet="Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedido__descuent__70DDC3D8" Association="Self.FK__Pedido__descuent__70DDC3D8">
+      <End Role="Descuento" EntitySet="Descuento" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedido__ID_clien__6FE99F9F" Association="Self.FK__Pedido__ID_clien__6FE99F9F">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__producto__ID_fes__49C3F6B7" Association="Self.FK__producto__ID_fes__49C3F6B7">
+      <End Role="Festividad" EntitySet="Festividad" />
+      <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__producto__ID_tip__48CFD27E" Association="Self.FK__producto__ID_tip__48CFD27E">
+      <End Role="Tipo_Producto" EntitySet="Tipo_Producto" />
+      <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__ID_Pers__35BCFE0A" Association="Self.FK__Usuario__ID_Pers__35BCFE0A">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__rol__34C8D9D1" Association="Self.FK__Usuario__rol__34C8D9D1">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

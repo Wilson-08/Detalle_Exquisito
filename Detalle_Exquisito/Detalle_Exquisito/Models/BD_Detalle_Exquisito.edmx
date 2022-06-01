@@ -1,0 +1,1604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BD_Detalle_ExquisitoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cargo_Empleo">
+          <Key>
+            <PropertyRef Name="ID_EmCar" />
+          </Key>
+          <Property Name="ID_EmCar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_car" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id_Per" />
+          </Key>
+          <Property Name="Id_Per" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Decoracion_Extra">
+          <Key>
+            <PropertyRef Name="ID_Decoracion" />
+          </Key>
+          <Property Name="ID_Decoracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion_Deco" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="costo" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Descuento">
+          <Key>
+            <PropertyRef Name="id_descuento" />
+          </Key>
+          <Property Name="id_descuento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="porcentaje" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="montoMinimo" Type="int" />
+          <Property Name="montoMaximo" Type="int" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Descuento_Cliente">
+          <Key>
+            <PropertyRef Name="id_DesCl" />
+          </Key>
+          <Property Name="id_DesCl" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mes_descuento" Type="date" Nullable="false" />
+          <Property Name="id_desc" Type="int" Nullable="false" />
+          <Property Name="Id_Per" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detalle_Decoracion_Extras">
+          <Key>
+            <PropertyRef Name="Nro_DDE" />
+          </Key>
+          <Property Name="Nro_DDE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="foto_Ubicacion" Type="varchar" MaxLength="1" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="ID_decoracion_extra" Type="int" Nullable="false" />
+          <Property Name="ID_detalle_Pedido" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalle_Pedido">
+          <Key>
+            <PropertyRef Name="id_detalle" />
+          </Key>
+          <Property Name="id_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cantidad_compra" Type="int" Nullable="false" />
+          <Property Name="fecha_entregado" Type="datetime" Nullable="false" />
+          <Property Name="dedicatoria" Type="varchar" MaxLength="200" />
+          <Property Name="Total_Detalle" Type="float" Nullable="false" />
+          <Property Name="cod_prod_dc" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Nropedido" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detalle_producto">
+          <Key>
+            <PropertyRef Name="Cod_Producto_Detalle" />
+          </Key>
+          <Property Name="Cod_Producto_Detalle" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="foto" Type="image" Nullable="false" />
+          <Property Name="nombreProducto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="precio" Type="float" Nullable="false" />
+          <Property Name="Cod_Producto" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detalle_Productos_Extras">
+          <Key>
+            <PropertyRef Name="Nro_DPE" />
+          </Key>
+          <Property Name="Nro_DPE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="foto_Ubicacion" Type="varchar" MaxLength="1" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ID_extra_Producto" Type="int" Nullable="false" />
+          <Property Name="ID_detalle_Pedido" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Id_Per" />
+          </Key>
+          <Property Name="Id_Per" Type="int" Nullable="false" />
+          <Property Name="ID_EmCar" Type="int" />
+        </EntityType>
+        <EntityType Name="Extra_Productos">
+          <Key>
+            <PropertyRef Name="ID_Expro" />
+          </Key>
+          <Property Name="ID_Expro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="foto" Type="image" />
+          <Property Name="Costo_total" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Festividad">
+          <Key>
+            <PropertyRef Name="ID_festividad" />
+          </Key>
+          <Property Name="ID_festividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreFestividad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_Dia" Type="date" />
+        </EntityType>
+        <EntityType Name="modulo">
+          <Key>
+            <PropertyRef Name="id_modulo" />
+          </Key>
+          <Property Name="id_modulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_modulo" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Operaciones">
+          <Key>
+            <PropertyRef Name="id_opera" />
+          </Key>
+          <Property Name="id_opera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Tarea" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_mod" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Operaciones_Menu">
+          <Key>
+            <PropertyRef Name="id_OpeMen" />
+          </Key>
+          <Property Name="id_OpeMen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rol_seleccion" Type="int" Nullable="false" />
+          <Property Name="id_operaciones" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="Cod_Pago" />
+          </Key>
+          <Property Name="Cod_Pago" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Forma_Pago" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_actual" Type="datetime" />
+          <Property Name="nombreDestinatario" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Nro_pedidop" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Nropedido" />
+          </Key>
+          <Property Name="Nropedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_Pedido" Type="datetime" Nullable="false" />
+          <Property Name="costoEnvio" Type="float" Nullable="false" />
+          <Property Name="Nro_Entrega" Type="int" />
+          <Property Name="Ubicacion_Latitud" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Ubicacion_Longitud" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Costo_Total" Type="float" Nullable="false" />
+          <Property Name="ID_cliente" Type="int" Nullable="false" />
+          <Property Name="descuento_P" Type="int" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id_Per" />
+          </Key>
+          <Property Name="Id_Per" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CI_Persona" Type="int" Nullable="false" />
+          <Property Name="nombre_Persona" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apellido_Paterno_cliente" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apellido_Materno_cliente" Type="varchar" MaxLength="20" />
+          <Property Name="nro_telefono" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="Cod_Producto" />
+          </Key>
+          <Property Name="Cod_Producto" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="foto" Type="image" Nullable="false" />
+          <Property Name="nombreProducto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="precio" Type="float" Nullable="false" />
+          <Property Name="ID_tipoProd" Type="int" Nullable="false" />
+          <Property Name="ID_festividad_P" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id_rol" />
+          </Key>
+          <Property Name="Id_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_rol" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Producto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="correo_Electronico" />
+          </Key>
+          <Property Name="correo_Electronico" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="150" />
+          <Property Name="rol" Type="int" Nullable="false" />
+          <Property Name="ID_Persona" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Cliente__Id_Per__3A81B327">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Id_Per" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Descuento__id_de__3D5E1FD2">
+          <End Role="Descuento" Type="Self.Descuento" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Descuento_Cliente" Type="Self.Descuento_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Descuento">
+              <PropertyRef Name="id_descuento" />
+            </Principal>
+            <Dependent Role="Descuento_Cliente">
+              <PropertyRef Name="id_desc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Descuento__Id_Pe__3E52440B">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Descuento_Cliente" Type="Self.Descuento_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Descuento_Cliente">
+              <PropertyRef Name="Id_Per" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_D__ID_de__00200768">
+          <End Role="detalle_Pedido" Type="Self.detalle_Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalle_Decoracion_Extras" Type="Self.Detalle_Decoracion_Extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_Pedido">
+              <PropertyRef Name="id_detalle" />
+            </Principal>
+            <Dependent Role="Detalle_Decoracion_Extras">
+              <PropertyRef Name="ID_detalle_Pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_D__ID_de__7F2BE32F">
+          <End Role="Decoracion_Extra" Type="Self.Decoracion_Extra" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalle_Decoracion_Extras" Type="Self.Detalle_Decoracion_Extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Decoracion_Extra">
+              <PropertyRef Name="ID_Decoracion" />
+            </Principal>
+            <Dependent Role="Detalle_Decoracion_Extras">
+              <PropertyRef Name="ID_decoracion_extra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_p__Cod_P__4CA06362">
+          <End Role="producto" Type="Self.producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalle_producto" Type="Self.Detalle_producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="Cod_Producto" />
+            </Principal>
+            <Dependent Role="Detalle_producto">
+              <PropertyRef Name="Cod_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_P__cod_p__76969D2E">
+          <End Role="producto" Type="Self.producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalle_Pedido" Type="Self.detalle_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="Cod_Producto" />
+            </Principal>
+            <Dependent Role="detalle_Pedido">
+              <PropertyRef Name="cod_prod_dc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__ID_de__7A672E12">
+          <End Role="detalle_Pedido" Type="Self.detalle_Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalle_Productos_Extras" Type="Self.Detalle_Productos_Extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_Pedido">
+              <PropertyRef Name="id_detalle" />
+            </Principal>
+            <Dependent Role="Detalle_Productos_Extras">
+              <PropertyRef Name="ID_detalle_Pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__ID_ex__797309D9">
+          <End Role="Extra_Productos" Type="Self.Extra_Productos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalle_Productos_Extras" Type="Self.Detalle_Productos_Extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Extra_Productos">
+              <PropertyRef Name="ID_Expro" />
+            </Principal>
+            <Dependent Role="Detalle_Productos_Extras">
+              <PropertyRef Name="ID_extra_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_P__Nrope__75A278F5">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalle_Pedido" Type="Self.detalle_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Nropedido" />
+            </Principal>
+            <Dependent Role="detalle_Pedido">
+              <PropertyRef Name="Nropedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__ID_EmC__412EB0B6">
+          <End Role="Cargo_Empleo" Type="Self.Cargo_Empleo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo_Empleo">
+              <PropertyRef Name="ID_EmCar" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="ID_EmCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__Id_Per__4222D4EF">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Id_Per" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__id_mo__286302EC">
+          <End Role="modulo" Type="Self.modulo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modulo">
+              <PropertyRef Name="id_modulo" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="id_mod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__id_op__2C3393D0">
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operaciones_Menu" Type="Self.Operaciones_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operaciones">
+              <PropertyRef Name="id_opera" />
+            </Principal>
+            <Dependent Role="Operaciones_Menu">
+              <PropertyRef Name="id_operaciones" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__rol_s__2B3F6F97">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operaciones_Menu" Type="Self.Operaciones_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id_rol" />
+            </Principal>
+            <Dependent Role="Operaciones_Menu">
+              <PropertyRef Name="rol_seleccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__Nro_pedido__02FC7413">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Nropedido" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="Nro_pedidop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__descuent__70DDC3D8">
+          <End Role="Descuento" Type="Self.Descuento" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Descuento">
+              <PropertyRef Name="id_descuento" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="descuento_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__ID_clien__6FE99F9F">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="ID_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__ID_fes__49C3F6B7">
+          <End Role="Festividad" Type="Self.Festividad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Festividad">
+              <PropertyRef Name="ID_festividad" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="ID_festividad_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__ID_tip__48CFD27E">
+          <End Role="Tipo_Producto" Type="Self.Tipo_Producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Producto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="ID_tipoProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__ID_Pers__35BCFE0A">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__rol__34C8D9D1">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id_rol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_Detalle_ExquisitoModelStoreContainer">
+          <EntitySet Name="Cargo_Empleo" EntityType="Self.Cargo_Empleo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Decoracion_Extra" EntityType="Self.Decoracion_Extra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Descuento" EntityType="Self.Descuento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Descuento_Cliente" EntityType="Self.Descuento_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Decoracion_Extras" EntityType="Self.Detalle_Decoracion_Extras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_Pedido" EntityType="Self.detalle_Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_producto" EntityType="Self.Detalle_producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Productos_Extras" EntityType="Self.Detalle_Productos_Extras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Extra_Productos" EntityType="Self.Extra_Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Festividad" EntityType="Self.Festividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="modulo" EntityType="Self.modulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operaciones" EntityType="Self.Operaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operaciones_Menu" EntityType="Self.Operaciones_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Producto" EntityType="Self.Tipo_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cliente__Id_Per__3A81B327" Association="Self.FK__Cliente__Id_Per__3A81B327">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Descuento__id_de__3D5E1FD2" Association="Self.FK__Descuento__id_de__3D5E1FD2">
+            <End Role="Descuento" EntitySet="Descuento" />
+            <End Role="Descuento_Cliente" EntitySet="Descuento_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Descuento__Id_Pe__3E52440B" Association="Self.FK__Descuento__Id_Pe__3E52440B">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Descuento_Cliente" EntitySet="Descuento_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_D__ID_de__00200768" Association="Self.FK__Detalle_D__ID_de__00200768">
+            <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+            <End Role="Detalle_Decoracion_Extras" EntitySet="Detalle_Decoracion_Extras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_D__ID_de__7F2BE32F" Association="Self.FK__Detalle_D__ID_de__7F2BE32F">
+            <End Role="Decoracion_Extra" EntitySet="Decoracion_Extra" />
+            <End Role="Detalle_Decoracion_Extras" EntitySet="Detalle_Decoracion_Extras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_p__Cod_P__4CA06362" Association="Self.FK__Detalle_p__Cod_P__4CA06362">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="Detalle_producto" EntitySet="Detalle_producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_P__cod_p__76969D2E" Association="Self.FK__detalle_P__cod_p__76969D2E">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__ID_de__7A672E12" Association="Self.FK__Detalle_P__ID_de__7A672E12">
+            <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+            <End Role="Detalle_Productos_Extras" EntitySet="Detalle_Productos_Extras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__ID_ex__797309D9" Association="Self.FK__Detalle_P__ID_ex__797309D9">
+            <End Role="Extra_Productos" EntitySet="Extra_Productos" />
+            <End Role="Detalle_Productos_Extras" EntitySet="Detalle_Productos_Extras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_P__Nrope__75A278F5" Association="Self.FK__detalle_P__Nrope__75A278F5">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__ID_EmC__412EB0B6" Association="Self.FK__Empleado__ID_EmC__412EB0B6">
+            <End Role="Cargo_Empleo" EntitySet="Cargo_Empleo" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__Id_Per__4222D4EF" Association="Self.FK__Empleado__Id_Per__4222D4EF">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__id_mo__286302EC" Association="Self.FK__Operacion__id_mo__286302EC">
+            <End Role="modulo" EntitySet="modulo" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__id_op__2C3393D0" Association="Self.FK__Operacion__id_op__2C3393D0">
+            <End Role="Operaciones" EntitySet="Operaciones" />
+            <End Role="Operaciones_Menu" EntitySet="Operaciones_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__rol_s__2B3F6F97" Association="Self.FK__Operacion__rol_s__2B3F6F97">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Operaciones_Menu" EntitySet="Operaciones_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__Nro_pedido__02FC7413" Association="Self.FK__Pago__Nro_pedido__02FC7413">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__descuent__70DDC3D8" Association="Self.FK__Pedido__descuent__70DDC3D8">
+            <End Role="Descuento" EntitySet="Descuento" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__ID_clien__6FE99F9F" Association="Self.FK__Pedido__ID_clien__6FE99F9F">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__ID_fes__49C3F6B7" Association="Self.FK__producto__ID_fes__49C3F6B7">
+            <End Role="Festividad" EntitySet="Festividad" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__ID_tip__48CFD27E" Association="Self.FK__producto__ID_tip__48CFD27E">
+            <End Role="Tipo_Producto" EntitySet="Tipo_Producto" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__ID_Pers__35BCFE0A" Association="Self.FK__Usuario__ID_Pers__35BCFE0A">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__rol__34C8D9D1" Association="Self.FK__Usuario__rol__34C8D9D1">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_Detalle_ExquisitoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BD_Detalle_ExquisitoEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="Ultima_Persona" ReturnType="Collection(BD_Detalle_ExquisitoModel.Ultima_Persona_Result)">
+          </FunctionImport>
+          <EntitySet Name="Persona" EntityType="BD_Detalle_ExquisitoModel.Persona" />
+          <FunctionImport Name="buscar" ReturnType="Collection(BD_Detalle_ExquisitoModel.buscar_Result)">
+          <Parameter Name="valor" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="buscar1" ReturnType="Collection(BD_Detalle_ExquisitoModel.buscar1_Result)">
+          <Parameter Name="valor" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Ultima_Persona1" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="buscar_P" ReturnType="Collection(BD_Detalle_ExquisitoModel.buscar_P_Result)">
+          <Parameter Name="valor" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Cargo_Empleo" EntityType="BD_Detalle_ExquisitoModel.Cargo_Empleo" />
+          <EntitySet Name="Cliente" EntityType="BD_Detalle_ExquisitoModel.Cliente" />
+          <EntitySet Name="Decoracion_Extra" EntityType="BD_Detalle_ExquisitoModel.Decoracion_Extra" />
+          <EntitySet Name="Descuento" EntityType="BD_Detalle_ExquisitoModel.Descuento" />
+          <EntitySet Name="Descuento_Cliente" EntityType="BD_Detalle_ExquisitoModel.Descuento_Cliente" />
+          <EntitySet Name="Detalle_producto" EntityType="BD_Detalle_ExquisitoModel.Detalle_producto" />
+          <EntitySet Name="Detalle_Productos_Extras" EntityType="BD_Detalle_ExquisitoModel.Detalle_Productos_Extras" />
+          <EntitySet Name="Empleado" EntityType="BD_Detalle_ExquisitoModel.Empleado" />
+          <EntitySet Name="Extra_Productos" EntityType="BD_Detalle_ExquisitoModel.Extra_Productos" />
+          <EntitySet Name="Festividad" EntityType="BD_Detalle_ExquisitoModel.Festividad" />
+          <EntitySet Name="modulo" EntityType="BD_Detalle_ExquisitoModel.modulo" />
+          <EntitySet Name="Operaciones" EntityType="BD_Detalle_ExquisitoModel.Operaciones" />
+          <EntitySet Name="Operaciones_Menu" EntityType="BD_Detalle_ExquisitoModel.Operaciones_Menu" />
+          <EntitySet Name="Pago" EntityType="BD_Detalle_ExquisitoModel.Pago" />
+          <EntitySet Name="producto" EntityType="BD_Detalle_ExquisitoModel.producto" />
+          <EntitySet Name="Rol" EntityType="BD_Detalle_ExquisitoModel.Rol" />
+          <EntitySet Name="Tipo_Producto" EntityType="BD_Detalle_ExquisitoModel.Tipo_Producto" />
+          <EntitySet Name="Usuario" EntityType="BD_Detalle_ExquisitoModel.Usuario" />
+          <AssociationSet Name="FK__Empleado__ID_EmC__412EB0B6" Association="BD_Detalle_ExquisitoModel.FK__Empleado__ID_EmC__412EB0B6">
+            <End Role="Cargo_Empleo" EntitySet="Cargo_Empleo" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__Id_Per__3A81B327" Association="BD_Detalle_ExquisitoModel.FK__Cliente__Id_Per__3A81B327">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Descuento__Id_Pe__3E52440B" Association="BD_Detalle_ExquisitoModel.FK__Descuento__Id_Pe__3E52440B">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Descuento_Cliente" EntitySet="Descuento_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Descuento__id_de__3D5E1FD2" Association="BD_Detalle_ExquisitoModel.FK__Descuento__id_de__3D5E1FD2">
+            <End Role="Descuento" EntitySet="Descuento" />
+            <End Role="Descuento_Cliente" EntitySet="Descuento_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_p__Cod_P__4CA06362" Association="BD_Detalle_ExquisitoModel.FK__Detalle_p__Cod_P__4CA06362">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="Detalle_producto" EntitySet="Detalle_producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__ID_ex__59063A47" Association="BD_Detalle_ExquisitoModel.FK__Detalle_P__ID_ex__59063A47">
+            <End Role="Extra_Productos" EntitySet="Extra_Productos" />
+            <End Role="Detalle_Productos_Extras" EntitySet="Detalle_Productos_Extras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__Id_Per__4222D4EF" Association="BD_Detalle_ExquisitoModel.FK__Empleado__Id_Per__4222D4EF">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__ID_fes__49C3F6B7" Association="BD_Detalle_ExquisitoModel.FK__producto__ID_fes__49C3F6B7">
+            <End Role="Festividad" EntitySet="Festividad" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__id_mo__286302EC" Association="BD_Detalle_ExquisitoModel.FK__Operacion__id_mo__286302EC">
+            <End Role="modulo" EntitySet="modulo" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__id_op__2C3393D0" Association="BD_Detalle_ExquisitoModel.FK__Operacion__id_op__2C3393D0">
+            <End Role="Operaciones" EntitySet="Operaciones" />
+            <End Role="Operaciones_Menu" EntitySet="Operaciones_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__rol_s__2B3F6F97" Association="BD_Detalle_ExquisitoModel.FK__Operacion__rol_s__2B3F6F97">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Operaciones_Menu" EntitySet="Operaciones_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__ID_Pers__35BCFE0A" Association="BD_Detalle_ExquisitoModel.FK__Usuario__ID_Pers__35BCFE0A">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__ID_tip__48CFD27E" Association="BD_Detalle_ExquisitoModel.FK__producto__ID_tip__48CFD27E">
+            <End Role="Tipo_Producto" EntitySet="Tipo_Producto" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__rol__34C8D9D1" Association="BD_Detalle_ExquisitoModel.FK__Usuario__rol__34C8D9D1">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <EntitySet Name="Detalle_Decoracion_Extras" EntityType="BD_Detalle_ExquisitoModel.Detalle_Decoracion_Extras" />
+          <EntitySet Name="detalle_Pedido" EntityType="BD_Detalle_ExquisitoModel.detalle_Pedido" />
+          <EntitySet Name="Pedido" EntityType="BD_Detalle_ExquisitoModel.Pedido" />
+          <AssociationSet Name="FK__Detalle_D__ID_de__7F2BE32F" Association="BD_Detalle_ExquisitoModel.FK__Detalle_D__ID_de__7F2BE32F">
+            <End Role="Decoracion_Extra" EntitySet="Decoracion_Extra" />
+            <End Role="Detalle_Decoracion_Extras" EntitySet="Detalle_Decoracion_Extras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__descuent__70DDC3D8" Association="BD_Detalle_ExquisitoModel.FK__Pedido__descuent__70DDC3D8">
+            <End Role="Descuento" EntitySet="Descuento" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_D__ID_de__00200768" Association="BD_Detalle_ExquisitoModel.FK__Detalle_D__ID_de__00200768">
+            <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+            <End Role="Detalle_Decoracion_Extras" EntitySet="Detalle_Decoracion_Extras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_P__cod_p__76969D2E" Association="BD_Detalle_ExquisitoModel.FK__detalle_P__cod_p__76969D2E">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__ID_de__7A672E12" Association="BD_Detalle_ExquisitoModel.FK__Detalle_P__ID_de__7A672E12">
+            <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+            <End Role="Detalle_Productos_Extras" EntitySet="Detalle_Productos_Extras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_P__Nrope__75A278F5" Association="BD_Detalle_ExquisitoModel.FK__detalle_P__Nrope__75A278F5">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="detalle_Pedido" EntitySet="detalle_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__Nro_pedido__02FC7413" Association="BD_Detalle_ExquisitoModel.FK__Pago__Nro_pedido__02FC7413">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__ID_clien__6FE99F9F" Association="BD_Detalle_ExquisitoModel.FK__Pedido__ID_clien__6FE99F9F">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="Ultima_Persona_Result">
+          <Property Type="Int32" Name="CI_Persona" Nullable="false" />
+          <Property Type="String" Name="nombre_Persona" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="apellido_Paterno_cliente" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="apellido_Materno_cliente" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="nro_telefono" Nullable="false" />
+          <Property Type="String" Name="correo_Electronico" Nullable="true" MaxLength="70" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id_Per" />
+          </Key>
+          <Property Name="Id_Per" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="CI_Persona" Nullable="false" Type="Int32" />
+          <Property Name="nombre_Persona" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="apellido_Paterno_cliente" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="apellido_Materno_cliente" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="nro_telefono" Nullable="false" Type="Int32" />
+          <Property Name="tipo" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" Type="String" />
+          <NavigationProperty Name="Cliente" Relationship="BD_Detalle_ExquisitoModel.FK__Cliente__Id_Per__3A81B327" FromRole="Persona" ToRole="Cliente" />
+          <NavigationProperty Name="Empleado" Relationship="BD_Detalle_ExquisitoModel.FK__Empleado__Id_Per__4222D4EF" FromRole="Persona" ToRole="Empleado" />
+          <NavigationProperty Name="Usuario" Relationship="BD_Detalle_ExquisitoModel.FK__Usuario__ID_Pers__35BCFE0A" FromRole="Persona" ToRole="Usuario" />
+          <NavigationProperty Name="Pedido" Relationship="BD_Detalle_ExquisitoModel.FK__Pedido__ID_clien__6FE99F9F" FromRole="Persona" ToRole="Pedido" />
+          </EntityType>
+        <ComplexType Name="buscar_Result">
+          <Property Type="Int32" Name="Id_Per" Nullable="false" />
+          <Property Type="Int32" Name="CI_Persona" Nullable="false" />
+          <Property Type="String" Name="nombre_Persona" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="apellido_Paterno_cliente" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="apellido_Materno_cliente" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="nro_telefono" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="buscar1_Result">
+          <Property Type="Int32" Name="Id_Per" Nullable="false" />
+          <Property Type="Int32" Name="CI_Persona" Nullable="false" />
+          <Property Type="String" Name="nombre_Persona" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="apellido_Paterno_cliente" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="apellido_Materno_cliente" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="nro_telefono" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="buscar_P_Result">
+          <Property Type="Int32" Name="Id_Per" Nullable="false" />
+          <Property Type="Int32" Name="CI_Persona" Nullable="false" />
+          <Property Type="String" Name="nombre_Persona" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="apellido_Paterno_cliente" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="apellido_Materno_cliente" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="nro_telefono" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="Cargo_Empleo">
+          <Key>
+            <PropertyRef Name="ID_EmCar" />
+          </Key>
+          <Property Name="ID_EmCar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_car" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleado" Relationship="BD_Detalle_ExquisitoModel.FK__Empleado__ID_EmC__412EB0B6" FromRole="Cargo_Empleo" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id_Per" />
+          </Key>
+          <Property Name="Id_Per" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="BD_Detalle_ExquisitoModel.FK__Cliente__Id_Per__3A81B327" FromRole="Cliente" ToRole="Persona" />
+          <NavigationProperty Name="Descuento_Cliente" Relationship="BD_Detalle_ExquisitoModel.FK__Descuento__Id_Pe__3E52440B" FromRole="Cliente" ToRole="Descuento_Cliente" />
+        </EntityType>
+        <EntityType Name="Decoracion_Extra">
+          <Key>
+            <PropertyRef Name="ID_Decoracion" />
+          </Key>
+          <Property Name="ID_Decoracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_Deco" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="costo" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Detalle_Decoracion_Extras" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_D__ID_de__7F2BE32F" FromRole="Decoracion_Extra" ToRole="Detalle_Decoracion_Extras" />
+        </EntityType>
+        <EntityType Name="Descuento">
+          <Key>
+            <PropertyRef Name="id_descuento" />
+          </Key>
+          <Property Name="id_descuento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="porcentaje" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="montoMinimo" Type="Int32" />
+          <Property Name="montoMaximo" Type="Int32" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Descuento_Cliente" Relationship="BD_Detalle_ExquisitoModel.FK__Descuento__id_de__3D5E1FD2" FromRole="Descuento" ToRole="Descuento_Cliente" />
+          <NavigationProperty Name="Pedido" Relationship="BD_Detalle_ExquisitoModel.FK__Pedido__descuent__70DDC3D8" FromRole="Descuento" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Descuento_Cliente">
+          <Key>
+            <PropertyRef Name="id_DesCl" />
+          </Key>
+          <Property Name="id_DesCl" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mes_descuento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_desc" Type="Int32" Nullable="false" />
+          <Property Name="Id_Per" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="BD_Detalle_ExquisitoModel.FK__Descuento__Id_Pe__3E52440B" FromRole="Descuento_Cliente" ToRole="Cliente" />
+          <NavigationProperty Name="Descuento" Relationship="BD_Detalle_ExquisitoModel.FK__Descuento__id_de__3D5E1FD2" FromRole="Descuento_Cliente" ToRole="Descuento" />
+        </EntityType>
+        <EntityType Name="Detalle_producto">
+          <Key>
+            <PropertyRef Name="Cod_Producto_Detalle" />
+          </Key>
+          <Property Name="Cod_Producto_Detalle" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="foto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="nombreProducto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Double" Nullable="false" />
+          <Property Name="Cod_Producto" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="producto" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_p__Cod_P__4CA06362" FromRole="Detalle_producto" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="Detalle_Productos_Extras">
+          <Key>
+            <PropertyRef Name="Nro_DPE" />
+          </Key>
+          <Property Name="Nro_DPE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="foto_Ubicacion" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ID_extra_Producto" Type="Int32" Nullable="false" />
+          <Property Name="ID_detalle_Pedido" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Extra_Productos" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_P__ID_ex__59063A47" FromRole="Detalle_Productos_Extras" ToRole="Extra_Productos" />
+          <NavigationProperty Name="detalle_Pedido" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_P__ID_de__7A672E12" FromRole="Detalle_Productos_Extras" ToRole="detalle_Pedido" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Id_Per" />
+          </Key>
+          <Property Name="Id_Per" Type="Int32" Nullable="false" />
+          <Property Name="ID_EmCar" Type="Int32" />
+          <NavigationProperty Name="Cargo_Empleo" Relationship="BD_Detalle_ExquisitoModel.FK__Empleado__ID_EmC__412EB0B6" FromRole="Empleado" ToRole="Cargo_Empleo" />
+          <NavigationProperty Name="Persona" Relationship="BD_Detalle_ExquisitoModel.FK__Empleado__Id_Per__4222D4EF" FromRole="Empleado" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Extra_Productos">
+          <Key>
+            <PropertyRef Name="ID_Expro" />
+          </Key>
+          <Property Name="ID_Expro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Costo_total" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Detalle_Productos_Extras" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_P__ID_ex__59063A47" FromRole="Extra_Productos" ToRole="Detalle_Productos_Extras" />
+        </EntityType>
+        <EntityType Name="Festividad">
+          <Key>
+            <PropertyRef Name="ID_festividad" />
+          </Key>
+          <Property Name="ID_festividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreFestividad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_Dia" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="producto" Relationship="BD_Detalle_ExquisitoModel.FK__producto__ID_fes__49C3F6B7" FromRole="Festividad" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="modulo">
+          <Key>
+            <PropertyRef Name="id_modulo" />
+          </Key>
+          <Property Name="id_modulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_modulo" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Operaciones" Relationship="BD_Detalle_ExquisitoModel.FK__Operacion__id_mo__286302EC" FromRole="modulo" ToRole="Operaciones" />
+        </EntityType>
+        <EntityType Name="Operaciones">
+          <Key>
+            <PropertyRef Name="id_opera" />
+          </Key>
+          <Property Name="id_opera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Tarea" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_mod" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="modulo" Relationship="BD_Detalle_ExquisitoModel.FK__Operacion__id_mo__286302EC" FromRole="Operaciones" ToRole="modulo" />
+          <NavigationProperty Name="Operaciones_Menu" Relationship="BD_Detalle_ExquisitoModel.FK__Operacion__id_op__2C3393D0" FromRole="Operaciones" ToRole="Operaciones_Menu" />
+        </EntityType>
+        <EntityType Name="Operaciones_Menu">
+          <Key>
+            <PropertyRef Name="id_OpeMen" />
+          </Key>
+          <Property Name="id_OpeMen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rol_seleccion" Type="Int32" Nullable="false" />
+          <Property Name="id_operaciones" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Operaciones" Relationship="BD_Detalle_ExquisitoModel.FK__Operacion__id_op__2C3393D0" FromRole="Operaciones_Menu" ToRole="Operaciones" />
+          <NavigationProperty Name="Rol" Relationship="BD_Detalle_ExquisitoModel.FK__Operacion__rol_s__2B3F6F97" FromRole="Operaciones_Menu" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="Cod_Pago" />
+          </Key>
+          <Property Name="Cod_Pago" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Forma_Pago" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_actual" Type="DateTime" Precision="3" />
+          <Property Name="nombreDestinatario" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Nro_pedidop" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="BD_Detalle_ExquisitoModel.FK__Pago__Nro_pedido__02FC7413" FromRole="Pago" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="Cod_Producto" />
+          </Key>
+          <Property Name="Cod_Producto" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="foto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="nombreProducto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Double" Nullable="false" />
+          <Property Name="ID_tipoProd" Type="Int32" Nullable="false" />
+          <Property Name="ID_festividad_P" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detalle_producto" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_p__Cod_P__4CA06362" FromRole="producto" ToRole="Detalle_producto" />
+          <NavigationProperty Name="Festividad" Relationship="BD_Detalle_ExquisitoModel.FK__producto__ID_fes__49C3F6B7" FromRole="producto" ToRole="Festividad" />
+          <NavigationProperty Name="Tipo_Producto" Relationship="BD_Detalle_ExquisitoModel.FK__producto__ID_tip__48CFD27E" FromRole="producto" ToRole="Tipo_Producto" />
+          <NavigationProperty Name="detalle_Pedido" Relationship="BD_Detalle_ExquisitoModel.FK__detalle_P__cod_p__76969D2E" FromRole="producto" ToRole="detalle_Pedido" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id_rol" />
+          </Key>
+          <Property Name="Id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_rol" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Operaciones_Menu" Relationship="BD_Detalle_ExquisitoModel.FK__Operacion__rol_s__2B3F6F97" FromRole="Rol" ToRole="Operaciones_Menu" />
+          <NavigationProperty Name="Usuario" Relationship="BD_Detalle_ExquisitoModel.FK__Usuario__rol__34C8D9D1" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Tipo_Producto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="producto" Relationship="BD_Detalle_ExquisitoModel.FK__producto__ID_tip__48CFD27E" FromRole="Tipo_Producto" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="correo_Electronico" />
+          </Key>
+          <Property Name="correo_Electronico" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="contraseña" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="Int32" Nullable="false" />
+          <Property Name="ID_Persona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="BD_Detalle_ExquisitoModel.FK__Usuario__ID_Pers__35BCFE0A" FromRole="Usuario" ToRole="Persona" />
+          <NavigationProperty Name="Rol1" Relationship="BD_Detalle_ExquisitoModel.FK__Usuario__rol__34C8D9D1" FromRole="Usuario" ToRole="Rol" />
+        </EntityType>
+        <Association Name="FK__Empleado__ID_EmC__412EB0B6">
+          <End Type="BD_Detalle_ExquisitoModel.Cargo_Empleo" Role="Cargo_Empleo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Empleado" Role="Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo_Empleo">
+              <PropertyRef Name="ID_EmCar" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="ID_EmCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__Id_Per__3A81B327">
+          <End Type="BD_Detalle_ExquisitoModel.Persona" Role="Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Id_Per" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Descuento__Id_Pe__3E52440B">
+          <End Type="BD_Detalle_ExquisitoModel.Cliente" Role="Cliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Descuento_Cliente" Role="Descuento_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Descuento_Cliente">
+              <PropertyRef Name="Id_Per" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Descuento__id_de__3D5E1FD2">
+          <End Type="BD_Detalle_ExquisitoModel.Descuento" Role="Descuento" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Descuento_Cliente" Role="Descuento_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Descuento">
+              <PropertyRef Name="id_descuento" />
+            </Principal>
+            <Dependent Role="Descuento_Cliente">
+              <PropertyRef Name="id_desc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_p__Cod_P__4CA06362">
+          <End Type="BD_Detalle_ExquisitoModel.producto" Role="producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Detalle_producto" Role="Detalle_producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="Cod_Producto" />
+            </Principal>
+            <Dependent Role="Detalle_producto">
+              <PropertyRef Name="Cod_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__ID_ex__59063A47">
+          <End Type="BD_Detalle_ExquisitoModel.Extra_Productos" Role="Extra_Productos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Detalle_Productos_Extras" Role="Detalle_Productos_Extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Extra_Productos">
+              <PropertyRef Name="ID_Expro" />
+            </Principal>
+            <Dependent Role="Detalle_Productos_Extras">
+              <PropertyRef Name="ID_extra_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__Id_Per__4222D4EF">
+          <End Type="BD_Detalle_ExquisitoModel.Persona" Role="Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Empleado" Role="Empleado" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Id_Per" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__ID_fes__49C3F6B7">
+          <End Type="BD_Detalle_ExquisitoModel.Festividad" Role="Festividad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.producto" Role="producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Festividad">
+              <PropertyRef Name="ID_festividad" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="ID_festividad_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__id_mo__286302EC">
+          <End Type="BD_Detalle_ExquisitoModel.modulo" Role="modulo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Operaciones" Role="Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modulo">
+              <PropertyRef Name="id_modulo" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="id_mod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__id_op__2C3393D0">
+          <End Type="BD_Detalle_ExquisitoModel.Operaciones" Role="Operaciones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Operaciones_Menu" Role="Operaciones_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operaciones">
+              <PropertyRef Name="id_opera" />
+            </Principal>
+            <Dependent Role="Operaciones_Menu">
+              <PropertyRef Name="id_operaciones" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__rol_s__2B3F6F97">
+          <End Type="BD_Detalle_ExquisitoModel.Rol" Role="Rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Operaciones_Menu" Role="Operaciones_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id_rol" />
+            </Principal>
+            <Dependent Role="Operaciones_Menu">
+              <PropertyRef Name="rol_seleccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__ID_Pers__35BCFE0A">
+          <End Type="BD_Detalle_ExquisitoModel.Persona" Role="Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__ID_tip__48CFD27E">
+          <End Type="BD_Detalle_ExquisitoModel.Tipo_Producto" Role="Tipo_Producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.producto" Role="producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Producto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="ID_tipoProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__rol__34C8D9D1">
+          <End Type="BD_Detalle_ExquisitoModel.Rol" Role="Rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id_rol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Detalle_Decoracion_Extras">
+          <Key>
+            <PropertyRef Name="Nro_DDE" />
+          </Key>
+          <Property Name="Nro_DDE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="foto_Ubicacion" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ID_decoracion_extra" Type="Int32" Nullable="false" />
+          <Property Name="ID_detalle_Pedido" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Decoracion_Extra" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_D__ID_de__7F2BE32F" FromRole="Detalle_Decoracion_Extras" ToRole="Decoracion_Extra" />
+          <NavigationProperty Name="detalle_Pedido" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_D__ID_de__00200768" FromRole="Detalle_Decoracion_Extras" ToRole="detalle_Pedido" />
+        </EntityType>
+        <EntityType Name="detalle_Pedido">
+          <Key>
+            <PropertyRef Name="id_detalle" />
+          </Key>
+          <Property Name="id_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad_compra" Type="Int32" Nullable="false" />
+          <Property Name="fecha_entregado" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dedicatoria" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Total_Detalle" Type="Double" Nullable="false" />
+          <Property Name="cod_prod_dc" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Nropedido" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detalle_Decoracion_Extras" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_D__ID_de__00200768" FromRole="detalle_Pedido" ToRole="Detalle_Decoracion_Extras" />
+          <NavigationProperty Name="producto" Relationship="BD_Detalle_ExquisitoModel.FK__detalle_P__cod_p__76969D2E" FromRole="detalle_Pedido" ToRole="producto" />
+          <NavigationProperty Name="Detalle_Productos_Extras" Relationship="BD_Detalle_ExquisitoModel.FK__Detalle_P__ID_de__7A672E12" FromRole="detalle_Pedido" ToRole="Detalle_Productos_Extras" />
+          <NavigationProperty Name="Pedido" Relationship="BD_Detalle_ExquisitoModel.FK__detalle_P__Nrope__75A278F5" FromRole="detalle_Pedido" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Nropedido" />
+          </Key>
+          <Property Name="Nropedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_Pedido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="costoEnvio" Type="Double" Nullable="false" />
+          <Property Name="Nro_Entrega" Type="Int32" />
+          <Property Name="Ubicacion_Latitud" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Ubicacion_Longitud" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Costo_Total" Type="Double" Nullable="false" />
+          <Property Name="ID_cliente" Type="Int32" Nullable="false" />
+          <Property Name="descuento_P" Type="Int32" />
+          <NavigationProperty Name="Descuento" Relationship="BD_Detalle_ExquisitoModel.FK__Pedido__descuent__70DDC3D8" FromRole="Pedido" ToRole="Descuento" />
+          <NavigationProperty Name="detalle_Pedido" Relationship="BD_Detalle_ExquisitoModel.FK__detalle_P__Nrope__75A278F5" FromRole="Pedido" ToRole="detalle_Pedido" />
+          <NavigationProperty Name="Pago" Relationship="BD_Detalle_ExquisitoModel.FK__Pago__Nro_pedido__02FC7413" FromRole="Pedido" ToRole="Pago" />
+          <NavigationProperty Name="Persona" Relationship="BD_Detalle_ExquisitoModel.FK__Pedido__ID_clien__6FE99F9F" FromRole="Pedido" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK__Detalle_D__ID_de__7F2BE32F">
+          <End Type="BD_Detalle_ExquisitoModel.Decoracion_Extra" Role="Decoracion_Extra" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Detalle_Decoracion_Extras" Role="Detalle_Decoracion_Extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Decoracion_Extra">
+              <PropertyRef Name="ID_Decoracion" />
+            </Principal>
+            <Dependent Role="Detalle_Decoracion_Extras">
+              <PropertyRef Name="ID_decoracion_extra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__descuent__70DDC3D8">
+          <End Type="BD_Detalle_ExquisitoModel.Descuento" Role="Descuento" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Pedido" Role="Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Descuento">
+              <PropertyRef Name="id_descuento" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="descuento_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_D__ID_de__00200768">
+          <End Type="BD_Detalle_ExquisitoModel.detalle_Pedido" Role="detalle_Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Detalle_Decoracion_Extras" Role="Detalle_Decoracion_Extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_Pedido">
+              <PropertyRef Name="id_detalle" />
+            </Principal>
+            <Dependent Role="Detalle_Decoracion_Extras">
+              <PropertyRef Name="ID_detalle_Pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_P__cod_p__76969D2E">
+          <End Type="BD_Detalle_ExquisitoModel.producto" Role="producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.detalle_Pedido" Role="detalle_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="Cod_Producto" />
+            </Principal>
+            <Dependent Role="detalle_Pedido">
+              <PropertyRef Name="cod_prod_dc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__ID_de__7A672E12">
+          <End Type="BD_Detalle_ExquisitoModel.detalle_Pedido" Role="detalle_Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Detalle_Productos_Extras" Role="Detalle_Productos_Extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_Pedido">
+              <PropertyRef Name="id_detalle" />
+            </Principal>
+            <Dependent Role="Detalle_Productos_Extras">
+              <PropertyRef Name="ID_detalle_Pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_P__Nrope__75A278F5">
+          <End Type="BD_Detalle_ExquisitoModel.Pedido" Role="Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.detalle_Pedido" Role="detalle_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Nropedido" />
+            </Principal>
+            <Dependent Role="detalle_Pedido">
+              <PropertyRef Name="Nropedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__Nro_pedido__02FC7413">
+          <End Type="BD_Detalle_ExquisitoModel.Pedido" Role="Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Pago" Role="Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Nropedido" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="Nro_pedidop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__ID_clien__6FE99F9F">
+          <End Type="BD_Detalle_ExquisitoModel.Persona" Role="Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BD_Detalle_ExquisitoModel.Pedido" Role="Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id_Per" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="ID_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_Detalle_ExquisitoModelStoreContainer" CdmEntityContainer="BD_Detalle_ExquisitoEntities">
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="nro_telefono" ColumnName="nro_telefono" />
+                <ScalarProperty Name="apellido_Materno_cliente" ColumnName="apellido_Materno_cliente" />
+                <ScalarProperty Name="apellido_Paterno_cliente" ColumnName="apellido_Paterno_cliente" />
+                <ScalarProperty Name="nombre_Persona" ColumnName="nombre_Persona" />
+                <ScalarProperty Name="CI_Persona" ColumnName="CI_Persona" />
+                <ScalarProperty Name="Id_Per" ColumnName="Id_Per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargo_Empleo">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Cargo_Empleo">
+              <MappingFragment StoreEntitySet="Cargo_Empleo">
+                <ScalarProperty Name="Nombre_car" ColumnName="Nombre_car" />
+                <ScalarProperty Name="ID_EmCar" ColumnName="ID_EmCar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Id_Per" ColumnName="Id_Per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Decoracion_Extra">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Decoracion_Extra">
+              <MappingFragment StoreEntitySet="Decoracion_Extra">
+                <ScalarProperty Name="costo" ColumnName="costo" />
+                <ScalarProperty Name="descripcion_Deco" ColumnName="descripcion_Deco" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ID_Decoracion" ColumnName="ID_Decoracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Descuento">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Descuento">
+              <MappingFragment StoreEntitySet="Descuento">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="montoMaximo" ColumnName="montoMaximo" />
+                <ScalarProperty Name="montoMinimo" ColumnName="montoMinimo" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+                <ScalarProperty Name="id_descuento" ColumnName="id_descuento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Descuento_Cliente">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Descuento_Cliente">
+              <MappingFragment StoreEntitySet="Descuento_Cliente">
+                <ScalarProperty Name="Id_Per" ColumnName="Id_Per" />
+                <ScalarProperty Name="id_desc" ColumnName="id_desc" />
+                <ScalarProperty Name="mes_descuento" ColumnName="mes_descuento" />
+                <ScalarProperty Name="id_DesCl" ColumnName="id_DesCl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_producto">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Detalle_producto">
+              <MappingFragment StoreEntitySet="Detalle_producto">
+                <ScalarProperty Name="Cod_Producto" ColumnName="Cod_Producto" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="Cod_Producto_Detalle" ColumnName="Cod_Producto_Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Productos_Extras">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Detalle_Productos_Extras">
+              <MappingFragment StoreEntitySet="Detalle_Productos_Extras">
+                <ScalarProperty Name="ID_detalle_Pedido" ColumnName="ID_detalle_Pedido" />
+                <ScalarProperty Name="ID_extra_Producto" ColumnName="ID_extra_Producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="foto_Ubicacion" ColumnName="foto_Ubicacion" />
+                <ScalarProperty Name="Nro_DPE" ColumnName="Nro_DPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="ID_EmCar" ColumnName="ID_EmCar" />
+                <ScalarProperty Name="Id_Per" ColumnName="Id_Per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Extra_Productos">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Extra_Productos">
+              <MappingFragment StoreEntitySet="Extra_Productos">
+                <ScalarProperty Name="Costo_total" ColumnName="Costo_total" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID_Expro" ColumnName="ID_Expro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Festividad">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Festividad">
+              <MappingFragment StoreEntitySet="Festividad">
+                <ScalarProperty Name="fecha_Dia" ColumnName="fecha_Dia" />
+                <ScalarProperty Name="nombreFestividad" ColumnName="nombreFestividad" />
+                <ScalarProperty Name="ID_festividad" ColumnName="ID_festividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="modulo">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.modulo">
+              <MappingFragment StoreEntitySet="modulo">
+                <ScalarProperty Name="nombre_modulo" ColumnName="nombre_modulo" />
+                <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operaciones">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Operaciones">
+              <MappingFragment StoreEntitySet="Operaciones">
+                <ScalarProperty Name="id_mod" ColumnName="id_mod" />
+                <ScalarProperty Name="nombre_Tarea" ColumnName="nombre_Tarea" />
+                <ScalarProperty Name="id_opera" ColumnName="id_opera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operaciones_Menu">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Operaciones_Menu">
+              <MappingFragment StoreEntitySet="Operaciones_Menu">
+                <ScalarProperty Name="id_operaciones" ColumnName="id_operaciones" />
+                <ScalarProperty Name="rol_seleccion" ColumnName="rol_seleccion" />
+                <ScalarProperty Name="id_OpeMen" ColumnName="id_OpeMen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pago">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Pago">
+              <MappingFragment StoreEntitySet="Pago">
+                <ScalarProperty Name="Nro_pedidop" ColumnName="Nro_pedidop" />
+                <ScalarProperty Name="nombreDestinatario" ColumnName="nombreDestinatario" />
+                <ScalarProperty Name="fecha_actual" ColumnName="fecha_actual" />
+                <ScalarProperty Name="Forma_Pago" ColumnName="Forma_Pago" />
+                <ScalarProperty Name="Cod_Pago" ColumnName="Cod_Pago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="ID_festividad_P" ColumnName="ID_festividad_P" />
+                <ScalarProperty Name="ID_tipoProd" ColumnName="ID_tipoProd" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="Cod_Producto" ColumnName="Cod_Producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
+                <ScalarProperty Name="Id_rol" ColumnName="Id_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Producto">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Tipo_Producto">
+              <MappingFragment StoreEntitySet="Tipo_Producto">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="correo_Electronico" ColumnName="correo_Electronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Decoracion_Extras">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Detalle_Decoracion_Extras">
+              <MappingFragment StoreEntitySet="Detalle_Decoracion_Extras">
+                <ScalarProperty Name="ID_detalle_Pedido" ColumnName="ID_detalle_Pedido" />
+                <ScalarProperty Name="ID_decoracion_extra" ColumnName="ID_decoracion_extra" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="foto_Ubicacion" ColumnName="foto_Ubicacion" />
+                <ScalarProperty Name="Nro_DDE" ColumnName="Nro_DDE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_Pedido">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.detalle_Pedido">
+              <MappingFragment StoreEntitySet="detalle_Pedido">
+                <ScalarProperty Name="Nropedido" ColumnName="Nropedido" />
+                <ScalarProperty Name="cod_prod_dc" ColumnName="cod_prod_dc" />
+                <ScalarProperty Name="Total_Detalle" ColumnName="Total_Detalle" />
+                <ScalarProperty Name="dedicatoria" ColumnName="dedicatoria" />
+                <ScalarProperty Name="fecha_entregado" ColumnName="fecha_entregado" />
+                <ScalarProperty Name="cantidad_compra" ColumnName="cantidad_compra" />
+                <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="descuento_P" ColumnName="descuento_P" />
+                <ScalarProperty Name="ID_cliente" ColumnName="ID_cliente" />
+                <ScalarProperty Name="Costo_Total" ColumnName="Costo_Total" />
+                <ScalarProperty Name="Ubicacion_Longitud" ColumnName="Ubicacion_Longitud" />
+                <ScalarProperty Name="Ubicacion_Latitud" ColumnName="Ubicacion_Latitud" />
+                <ScalarProperty Name="Nro_Entrega" ColumnName="Nro_Entrega" />
+                <ScalarProperty Name="costoEnvio" ColumnName="costoEnvio" />
+                <ScalarProperty Name="fecha_Pedido" ColumnName="fecha_Pedido" />
+                <ScalarProperty Name="Nropedido" ColumnName="Nropedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BD_Detalle_ExquisitoModelStoreContainer" CdmEntityContainer="BD_Detalle_ExquisitoEntities">
+    <EntitySetMapping Name="Persona">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Persona">
+        <MappingFragment StoreEntitySet="Persona">
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="nro_telefono" ColumnName="nro_telefono" />
+          <ScalarProperty Name="apellido_Materno_cliente" ColumnName="apellido_Materno_cliente" />
+          <ScalarProperty Name="apellido_Paterno_cliente" ColumnName="apellido_Paterno_cliente" />
+          <ScalarProperty Name="nombre_Persona" ColumnName="nombre_Persona" />
+          <ScalarProperty Name="CI_Persona" ColumnName="CI_Persona" />
+          <ScalarProperty Name="Id_Per" ColumnName="Id_Per" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cargo_Empleo">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Cargo_Empleo">
+        <MappingFragment StoreEntitySet="Cargo_Empleo">
+          <ScalarProperty Name="Nombre_car" ColumnName="Nombre_car" />
+          <ScalarProperty Name="ID_EmCar" ColumnName="ID_EmCar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="Id_Per" ColumnName="Id_Per" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Decoracion_Extra">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Decoracion_Extra">
+        <MappingFragment StoreEntitySet="Decoracion_Extra">
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="descripcion_Deco" ColumnName="descripcion_Deco" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="ID_Decoracion" ColumnName="ID_Decoracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Descuento">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Descuento">
+        <MappingFragment StoreEntitySet="Descuento">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="montoMaximo" ColumnName="montoMaximo" />
+          <ScalarProperty Name="montoMinimo" ColumnName="montoMinimo" />
+          <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+          <ScalarProperty Name="id_descuento" ColumnName="id_descuento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Descuento_Cliente">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Descuento_Cliente">
+        <MappingFragment StoreEntitySet="Descuento_Cliente">
+          <ScalarProperty Name="Id_Per" ColumnName="Id_Per" />
+          <ScalarProperty Name="id_desc" ColumnName="id_desc" />
+          <ScalarProperty Name="mes_descuento" ColumnName="mes_descuento" />
+          <ScalarProperty Name="id_DesCl" ColumnName="id_DesCl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Detalle_producto">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Detalle_producto">
+        <MappingFragment StoreEntitySet="Detalle_producto">
+          <ScalarProperty Name="Cod_Producto" ColumnName="Cod_Producto" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="Cod_Producto_Detalle" ColumnName="Cod_Producto_Detalle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Detalle_Productos_Extras">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Detalle_Productos_Extras">
+        <MappingFragment StoreEntitySet="Detalle_Productos_Extras">
+          <ScalarProperty Name="ID_detalle_Pedido" ColumnName="ID_detalle_Pedido" />
+          <ScalarProperty Name="ID_extra_Producto" ColumnName="ID_extra_Producto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="foto_Ubicacion" ColumnName="foto_Ubicacion" />
+          <ScalarProperty Name="Nro_DPE" ColumnName="Nro_DPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="ID_EmCar" ColumnName="ID_EmCar" />
+          <ScalarProperty Name="Id_Per" ColumnName="Id_Per" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Extra_Productos">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Extra_Productos">
+        <MappingFragment StoreEntitySet="Extra_Productos">
+          <ScalarProperty Name="Costo_total" ColumnName="Costo_total" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ID_Expro" ColumnName="ID_Expro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Festividad">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Festividad">
+        <MappingFragment StoreEntitySet="Festividad">
+          <ScalarProperty Name="fecha_Dia" ColumnName="fecha_Dia" />
+          <ScalarProperty Name="nombreFestividad" ColumnName="nombreFestividad" />
+          <ScalarProperty Name="ID_festividad" ColumnName="ID_festividad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modulo">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.modulo">
+        <MappingFragment StoreEntitySet="modulo">
+          <ScalarProperty Name="nombre_modulo" ColumnName="nombre_modulo" />
+          <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Operaciones">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Operaciones">
+        <MappingFragment StoreEntitySet="Operaciones">
+          <ScalarProperty Name="id_mod" ColumnName="id_mod" />
+          <ScalarProperty Name="nombre_Tarea" ColumnName="nombre_Tarea" />
+          <ScalarProperty Name="id_opera" ColumnName="id_opera" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Operaciones_Menu">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Operaciones_Menu">
+        <MappingFragment StoreEntitySet="Operaciones_Menu">
+          <ScalarProperty Name="id_operaciones" ColumnName="id_operaciones" />
+          <ScalarProperty Name="rol_seleccion" ColumnName="rol_seleccion" />
+          <ScalarProperty Name="id_OpeMen" ColumnName="id_OpeMen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pago">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Pago">
+        <MappingFragment StoreEntitySet="Pago">
+          <ScalarProperty Name="Nro_pedidop" ColumnName="Nro_pedidop" />
+          <ScalarProperty Name="nombreDestinatario" ColumnName="nombreDestinatario" />
+          <ScalarProperty Name="fecha_actual" ColumnName="fecha_actual" />
+          <ScalarProperty Name="Forma_Pago" ColumnName="Forma_Pago" />
+          <ScalarProperty Name="Cod_Pago" ColumnName="Cod_Pago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producto">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.producto">
+        <MappingFragment StoreEntitySet="producto">
+          <ScalarProperty Name="ID_festividad_P" ColumnName="ID_festividad_P" />
+          <ScalarProperty Name="ID_tipoProd" ColumnName="ID_tipoProd" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="Cod_Producto" ColumnName="Cod_Producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rol">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
+          <ScalarProperty Name="Id_rol" ColumnName="Id_rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipo_Producto">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Tipo_Producto">
+        <MappingFragment StoreEntitySet="Tipo_Producto">
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="correo_Electronico" ColumnName="correo_Electronico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Detalle_Decoracion_Extras">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Detalle_Decoracion_Extras">
+        <MappingFragment StoreEntitySet="Detalle_Decoracion_Extras">
+          <ScalarProperty Name="ID_detalle_Pedido" ColumnName="ID_detalle_Pedido" />
+          <ScalarProperty Name="ID_decoracion_extra" ColumnName="ID_decoracion_extra" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="foto_Ubicacion" ColumnName="foto_Ubicacion" />
+          <ScalarProperty Name="Nro_DDE" ColumnName="Nro_DDE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalle_Pedido">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.detalle_Pedido">
+        <MappingFragment StoreEntitySet="detalle_Pedido">
+          <ScalarProperty Name="Nropedido" ColumnName="Nropedido" />
+          <ScalarProperty Name="cod_prod_dc" ColumnName="cod_prod_dc" />
+          <ScalarProperty Name="Total_Detalle" ColumnName="Total_Detalle" />
+          <ScalarProperty Name="dedicatoria" ColumnName="dedicatoria" />
+          <ScalarProperty Name="fecha_entregado" ColumnName="fecha_entregado" />
+          <ScalarProperty Name="cantidad_compra" ColumnName="cantidad_compra" />
+          <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedido">
+      <EntityTypeMapping TypeName="BD_Detalle_ExquisitoModel.Pedido">
+        <MappingFragment StoreEntitySet="Pedido">
+          <ScalarProperty Name="descuento_P" ColumnName="descuento_P" />
+          <ScalarProperty Name="ID_cliente" ColumnName="ID_cliente" />
+          <ScalarProperty Name="Costo_Total" ColumnName="Costo_Total" />
+          <ScalarProperty Name="Ubicacion_Longitud" ColumnName="Ubicacion_Longitud" />
+          <ScalarProperty Name="Ubicacion_Latitud" ColumnName="Ubicacion_Latitud" />
+          <ScalarProperty Name="Nro_Entrega" ColumnName="Nro_Entrega" />
+          <ScalarProperty Name="costoEnvio" ColumnName="costoEnvio" />
+          <ScalarProperty Name="fecha_Pedido" ColumnName="fecha_Pedido" />
+          <ScalarProperty Name="Nropedido" ColumnName="Nropedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

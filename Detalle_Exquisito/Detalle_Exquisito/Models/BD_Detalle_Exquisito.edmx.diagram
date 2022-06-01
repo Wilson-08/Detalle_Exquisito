@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a428472a593648bebf17c61f25eee42a" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Persona" PointX="0.75" PointY="1" Width="1.5" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Cargo_Empleo" Width="1.5" PointX="3.75" PointY="19.25" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Cliente" Width="1.5" PointX="3" PointY="16.5" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Decoracion_Extra" Width="1.5" PointX="7.875" PointY="3.625" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Descuento" Width="1.5" PointX="3.375" PointY="12.5" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Descuento_Cliente" Width="1.5" PointX="5.625" PointY="16.125" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Detalle_producto" Width="1.5" PointX="7.875" PointY="11.5" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Detalle_Productos_Extras" Width="1.5" PointX="13.125" PointY="7.5" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Empleado" Width="1.5" PointX="5.75" PointY="2.625" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Extra_Productos" Width="1.5" PointX="10.875" PointY="4.625" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Festividad" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.modulo" Width="1.5" PointX="6.5" PointY="21.125" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Operaciones" Width="1.5" PointX="8.75" PointY="21" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Operaciones_Menu" Width="1.5" PointX="11" PointY="11" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Pago" Width="1.5" PointX="7.875" PointY="15.5" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.producto" Width="1.5" PointX="5.625" PointY="7" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Rol" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Tipo_Producto" Width="1.5" PointX="3.375" PointY="7.875" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Usuario" Width="1.5" PointX="3" PointY="1.5" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Empleado__ID_EmC__412EB0B6" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Cliente__Id_Per__3A81B327" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Descuento__Id_Pe__3E52440B" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Descuento__id_de__3D5E1FD2" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Detalle_p__Cod_P__4CA06362" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Detalle_P__ID_ex__59063A47" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Empleado__Id_Per__4222D4EF" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__producto__ID_fes__49C3F6B7" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Operacion__id_mo__286302EC" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Operacion__id_op__2C3393D0" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Operacion__rol_s__2B3F6F97" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Usuario__ID_Pers__35BCFE0A" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__producto__ID_tip__48CFD27E" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Usuario__rol__34C8D9D1" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Detalle_Decoracion_Extras" Width="1.5" PointX="16.125" PointY="3.625" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.detalle_Pedido" Width="1.5" PointX="13.875" PointY="3.25" />
+        <EntityTypeShape EntityType="BD_Detalle_ExquisitoModel.Pedido" Width="1.5" PointX="8.625" PointY="7.125" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Detalle_D__ID_de__7F2BE32F" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Pedido__descuent__70DDC3D8" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Detalle_D__ID_de__00200768" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__detalle_P__cod_p__76969D2E" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Detalle_P__ID_de__7A672E12" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__detalle_P__Nrope__75A278F5" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Pago__Nro_pedido__02FC7413" />
+        <AssociationConnector Association="BD_Detalle_ExquisitoModel.FK__Pedido__ID_clien__6FE99F9F" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
